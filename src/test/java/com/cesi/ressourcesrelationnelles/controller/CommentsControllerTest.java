@@ -22,7 +22,7 @@ public class CommentsControllerTest {
 
     @Test
     public void getCommentByID() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/Comments/10").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/comments/10").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Commentaire d'Alfred")));
     }

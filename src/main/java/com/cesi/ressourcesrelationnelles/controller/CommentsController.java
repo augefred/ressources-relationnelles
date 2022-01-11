@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class CommentsController {
 
-    @GetMapping("/Comments/id")
+    @GetMapping("/comments/{id}")
     public String getCommentById(int id) {
         String comment;
         if (id == 10)
@@ -20,7 +20,7 @@ public class CommentsController {
         return comment;
     }
 
-    @GetMapping("/Comments")
+    @GetMapping("/comments")
     public List<String> getAllComment() {
         List<String> comments = new ArrayList<>();
         comments.add("Commentaire de Jack");
@@ -30,7 +30,7 @@ public class CommentsController {
         return comments;
     }
 
-    @GetMapping("/Comments/commentMessage")
+    @GetMapping("/comments/{commentmessage}")
     public String createComment(String commentMessage) {
         String comment;
         comment = commentMessage;
