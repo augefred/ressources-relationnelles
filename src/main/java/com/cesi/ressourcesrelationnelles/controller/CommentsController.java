@@ -31,7 +31,7 @@ public class CommentsController {
         return comments;
     }
 
-    @GetMapping("/setComment")
+    @GetMapping("/setComment?commentMessage")
     public String createComment(String commentMessage) {
         String comment;
         comment = commentMessage;
