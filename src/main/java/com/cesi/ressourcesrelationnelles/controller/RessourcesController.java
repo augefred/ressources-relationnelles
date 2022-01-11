@@ -1,8 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -17,7 +15,8 @@ public class RessourcesController {
     }
 
     @GetMapping("/ressources/{id}")
-    public String getRessourceById(Long id) {
+    public String getRessourceById(@PathVariable("id")Long id) {
+        System.out.println(id);
         if(ressources.containsKey(id)){
             return ressources.get(id);
         }
@@ -33,5 +32,17 @@ public class RessourcesController {
         catch (Exception ex){
             return "Le commentaire n'a pu être ajouté";
         }
+    }
+
+    @PutMapping("/ressources")
+    public String updateRessource(Long id, String ressource) {
+        ressources.put(id, ressource);
+        return "La ressource a été modifiée";
+    }
+
+    @DeleteMapping("/ressources/{id}")
+    public String addRessource(@PathVariable("id")Long id) {
+        ressources.remove(id);
+        return "La ressource a été supprimé";
     }
 }
