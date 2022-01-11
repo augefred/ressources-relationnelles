@@ -2,11 +2,10 @@ package com.cesi.ressourcesrelationnelles.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @RestController
-public class RessourcesController {
+public class ResourcesController {
 
     HashMap<Long, String> ressources = new HashMap<>();
 
