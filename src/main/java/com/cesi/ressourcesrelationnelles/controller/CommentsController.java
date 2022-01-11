@@ -8,9 +8,9 @@ import java.util.List;
 
 @RestController
 public class CommentsController {
-
+/*
     @GetMapping("/comments/{id}")
-    public String getCommentById(int id) {
+    public String getCommentById(@PathVariable("id") int id) {
         String comment;
         if (id == 10)
             comment = "Commentaire d'Alfred";
@@ -19,6 +19,7 @@ public class CommentsController {
 
         return comment;
     }
+/**/
 
     @GetMapping("/comments")
     public List<String> getAllComment() {
@@ -30,10 +31,13 @@ public class CommentsController {
         return comments;
     }
 
-    @GetMapping("/comments/{commentmessage}")
-    public String createComment(String commentMessage) {
+/*
+    @PostMapping("/comments/{commentmessage}")
+    public String createComment(@PathVariable("commentmessage")String commentMessage) {
         String comment;
         comment = commentMessage;
         return "Le commantaire avec le Message : /n" + commentMessage + "/n a bien était ajouté";
     }
+    /**/
+
 }
