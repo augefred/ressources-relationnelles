@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 @RestController
 public class CommentsController {
 
-    @GetMapping("/GetComment?id")
+    @GetMapping("/Comments/id")
     public String getCommentById(int id) {
         String comment;
         if (id == 10)
@@ -21,7 +20,7 @@ public class CommentsController {
         return comment;
     }
 
-    @PostMapping("/GetAllComment")
+    @GetMapping("/Comments")
     public List<String> getAllComment() {
         List<String> comments = new ArrayList<>();
         comments.add("Commentaire de Jack");
@@ -31,7 +30,7 @@ public class CommentsController {
         return comments;
     }
 
-    @GetMapping("/setComment?commentMessage")
+    @GetMapping("/Comments/commentMessage")
     public String createComment(String commentMessage) {
         String comment;
         comment = commentMessage;
