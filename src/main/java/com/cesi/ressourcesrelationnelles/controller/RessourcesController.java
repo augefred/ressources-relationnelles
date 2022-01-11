@@ -2,6 +2,7 @@ package com.cesi.ressourcesrelationnelles.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @RestController
@@ -20,7 +21,7 @@ public class RessourcesController {
         if(ressources.containsKey(id)){
             return ressources.get(id);
         }
-        return "Aucune ressource n'a été trouvée";
+        return "Aucune ressource n'a ete trouvee";
     }
 
     @PostMapping("/ressources")

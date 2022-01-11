@@ -21,8 +21,8 @@ public class RessourcesControllerTest {
 
     @Test
     public void getRessources() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/ressources").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/ressources/-1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Index des ressources")));
+                .andExpect(content().string(equalTo("Aucune ressource n'a ete trouvee")));
     }
 }
