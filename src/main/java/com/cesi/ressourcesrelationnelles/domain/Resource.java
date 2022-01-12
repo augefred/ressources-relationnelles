@@ -1,11 +1,22 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class Resource {
+
+    @Id
+    @GeneratedValue
     private int id;
+    @Column
     private String title;
+    @Column
     private Date datePublication;
+    @Column
     private String url;
 
     public int getId() {
