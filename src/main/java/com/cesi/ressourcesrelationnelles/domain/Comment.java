@@ -1,10 +1,21 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 public class Comment {
+    public Comment(int id, String nameUser, String nameUserParentComment, String commentMessage) {
+        this.id = id;
+        this.nameUser = nameUser;
+        this.nameUserParentComment = nameUserParentComment;
+        this.commentMessage = commentMessage;
+    }
+
     public int id;
     public String nameUser;
     public String nameUserParentComment;
     public String commentMessage;
+
+    public Comment() {
+    }
+
 
     public int getId() {
         return id;
