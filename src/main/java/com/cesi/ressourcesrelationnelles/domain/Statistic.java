@@ -5,6 +5,16 @@ public class Statistic {
     private int id_ressource;
     private int nbVues;
 
+    public Statistic() {
+
+    }
+
+    public Statistic(int id, int id_ressource, int nbVues) {
+        this.id = id;
+        this.id_ressource = id_ressource;
+        this.nbVues = nbVues;
+    }
+
     public int getId() {
         return id;
     }
