@@ -26,9 +26,9 @@ public class CommentsController {
     @GetMapping("/comments")
     public List<Comment> getAllComment() {
         List<Comment> comments = new ArrayList<>();
-        Comment comment1= new Comment(1, "Jack", "JackParent","Message");
-        Comment comment2= new Comment(2, "Elodie", "ElodieParent","Message");
-        Comment comment3= new Comment(3, "Joe", "JoeParent","Message");
+        Comment comment1= new Comment(1L, "Jack", "JackParent","Message");
+        Comment comment2= new Comment(2L, "Elodie", "ElodieParent","Message");
+        Comment comment3= new Comment(3L, "Joe", "JoeParent","Message");
         comments.add(comment1);
         comments.add(comment2);
         comments.add(comment3);
