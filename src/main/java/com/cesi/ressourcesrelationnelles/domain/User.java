@@ -1,5 +1,8 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties
 public class User {
     private int id;
 
@@ -15,14 +18,14 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getFullName() {
-        return buildFullName(firstName , lastName);
-    }
+//    public String getFullName() {
+//        return buildFullName(firstName , lastName);
+//    }
 
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }
