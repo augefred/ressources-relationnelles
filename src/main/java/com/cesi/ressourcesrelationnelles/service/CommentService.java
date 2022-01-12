@@ -20,7 +20,7 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    public void createComment(Comment comment){
-        commentRepository.save(comment);
+    public Comment createComment(Comment comment){
+        return  commentRepository.save(comment);
     }
 }
