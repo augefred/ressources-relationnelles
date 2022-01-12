@@ -1,9 +1,11 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
+import com.cesi.ressourcesrelationnelles.domain.Comment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,13 +24,16 @@ public class CommentsController {
 /**/
 
     @GetMapping("/comments")
-    public List<String> getAllComment() {
-        List<String> comments = new ArrayList<>();
-        comments.add("Commentaire de Jack");
-        comments.add("Commentaire de Antoine");
-        comments.add("Commentaire de Sylvie");
+    public List<Comment> getAllComment() {
+        List<Comment> comments = new ArrayList<>();
+        Comment comment1= new Comment(1, "Jack", "JackParent","Message");
+        Comment comment2= new Comment(2, "Elodie", "ElodieParent","Message");
+        Comment comment3= new Comment(3, "Joe", "JoeParent","Message");
+        comments.add(comment1);
+        comments.add(comment2);
+        comments.add(comment3);
 
-        return comments;
+        return   comments;
     }
 
 /*
