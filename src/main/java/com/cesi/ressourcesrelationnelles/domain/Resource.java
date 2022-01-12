@@ -1,22 +1,26 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "RESOURCE")
 public class Resource {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO,
+            generator = "seq_post"
+    )
+    @SequenceGenerator(
+            name = "seq_post"
+    )
+    @Column(name = "ID")
     private int id;
-    @Column
+    @Column(name = "TITLE")
     private String title;
-    @Column
+    @Column(name = "DATEPUBLICATION")
     private Date datePublication;
-    @Column
+    @Column(name = "URL")
     private String url;
 
     public int getId() {
