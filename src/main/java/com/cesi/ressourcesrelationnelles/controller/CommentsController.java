@@ -1,7 +1,10 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Comment;
+import com.cesi.ressourcesrelationnelles.service.CommentService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -10,6 +13,11 @@ import java.util.List;
 
 @RestController
 public class CommentsController {
+    public CommentsController(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
+    private CommentService commentService;
 /*
     @GetMapping("/comments/{id}")
     public String getCommentById(@PathVariable("id") int id) {
@@ -25,24 +33,14 @@ public class CommentsController {
 
     @GetMapping("/comments")
     public List<Comment> getAllComment() {
-        List<Comment> comments = new ArrayList<>();
-        Comment comment1= new Comment(1, "Jack", "JackParent","Message");
-        Comment comment2= new Comment(2, "Elodie", "ElodieParent","Message");
-        Comment comment3= new Comment(3, "Joe", "JoeParent","Message");
-        comments.add(comment1);
-        comments.add(comment2);
-        comments.add(comment3);
-
-        return   comments;
+       return  commentService.list();
     }
 
-/*
-    @PostMapping("/comments/{commentmessage}")
-    public String createComment(@PathVariable("commentmessage")String commentMessage) {
-        String comment;
-        comment = commentMessage;
-        return "Le commantaire avec le Message : /n" + commentMessage + "/n a bien était ajouté";
+
+    @PostMapping("/comments")
+    public Comment createComment(Comment comment) {
+        return commentService.createComment(comment);
     }
-    /**/
+
 
 }
