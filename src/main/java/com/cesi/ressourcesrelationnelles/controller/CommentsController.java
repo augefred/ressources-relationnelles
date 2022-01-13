@@ -2,14 +2,9 @@ package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Comment;
 import com.cesi.ressourcesrelationnelles.service.CommentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CommentsController {
@@ -18,18 +13,28 @@ public class CommentsController {
     }
 
     private CommentService commentService;
-/*
-    @GetMapping("/comments/{id}")
-    public String getCommentById(@PathVariable("id") int id) {
-        String comment;
-        if (id == 10)
-            comment = "Commentaire d'Alfred";
-        else
-            comment = "Aucun commentaire à l'id spécifié";
 
-        return comment;
+
+    @GetMapping("/comments/{id}")
+    public Comment getCommentById(@PathVariable("id")Long id) {
+        Optional<Comment> comment = commentService.getById(id);
+        if(commentService.getById(id).isPresent()){
+            return comment.get();
+        }
+        return new Comment();
     }
-/**/
+
+    @PutMapping("/comments")
+    @ResponseBody
+    public Comment updateComment(@RequestBody Comment comment) {
+        return commentService.updateComment(comment);
+    }
+
+    @DeleteMapping("/comments/{id}")
+    public String deleteComment(@PathVariable("id")Long id) {
+        commentService.deleteComment(id);
+        return "Comment supprimée";
+    }
 
     @GetMapping("/comments")
     public List<Comment> getAllComment() {
@@ -38,7 +43,7 @@ public class CommentsController {
 
 
     @PostMapping("/comments")
-    public Comment createComment(Comment comment) {
+    public Comment createComment(@RequestBody Comment comment) {
         return commentService.createComment(comment);
     }
 
