@@ -3,7 +3,9 @@ package com.cesi.ressourcesrelationnelles.controller;
 import com.cesi.ressourcesrelationnelles.domain.Resource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.service.ResourceService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
@@ -23,11 +25,12 @@ public class ResourcesController {
 
     @GetMapping("/resources/{id}")
     public Resource getResourceById(@PathVariable("id")Long id) {
-        Optional<Resource> resource = resourceService.getById(id);
-        if(resource.isPresent()){
-            return resource.get();
+        try{
+            return resourceService.getById(id);
         }
-        return new Resource();
+        catch (ResourceNotFoundException ex){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 
     @PostMapping("/resources")

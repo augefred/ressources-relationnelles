@@ -23,8 +23,12 @@ public class ResourceService {
         return resourceRepository.findAll();
     }
 
-    public Optional<Resource> getById(long id){
-        return resourceRepository.findById(id);
+    public Resource getById(long id) throws ResourceNotFoundException {
+        Optional<Resource> res = resourceRepository.findById(id);
+        if(res.isPresent()){
+            return res.get();
+        }
+        throw new ResourceNotFoundException();
     }
 
     public Resource createResource(Resource resource){
