@@ -5,8 +5,6 @@ import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,14 +35,9 @@ public class StatisticServiceTest {
     }
 
     @Test
-    public void findStatisticByIdTest() {
+    public void findStatisticByIdTest() throws NotFoundException {
         Statistic stat = statService.create(new Statistic());
-        Statistic actualStat = null;
-        try {
-            actualStat = statService.getStatistic(stat.getId());
-        } catch (NotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-        }
+        Statistic actualStat = statService.getStatistic(stat.getId());
         assertNotNull(actualStat);
     }
 
@@ -53,5 +46,15 @@ public class StatisticServiceTest {
         assertThrowsExactly(NotFoundException.class, () -> {
             Statistic actualStat = statService.getStatistic(-27);
         });
+    }
+
+    @Test
+    public void findStatisticByNbVues() {
+        statService.create(new Statistic(1, 1, 200));
+        statService.create(new Statistic(2, 1, 250));
+        statService.create(new Statistic(3, 1, 300));
+        List<Statistic> stats = statService.list(250);
+        assertNotNull(stats);
+        assertEquals(1, stats.size());
     }
 }

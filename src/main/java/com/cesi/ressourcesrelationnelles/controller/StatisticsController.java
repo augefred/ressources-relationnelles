@@ -21,8 +21,8 @@ public class StatisticsController {
     }
 
     @GetMapping("/statistics")
-    public List<Statistic> getALlStatistic() {
-        return statService.list();
+    public List<Statistic> getALlStatistic(@RequestParam int nbVues) {
+        return statService.list(nbVues);
     }
 
     @PostMapping("/statistics")
