@@ -19,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ResourcesControllerTest {
+class ResourcesControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getRessources() throws Exception {
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/resources/-1").accept(MediaType.APPLICATION_JSON)).andReturn();
+    void getRessources() throws Exception {
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/resources/1").accept(MediaType.APPLICATION_JSON)).andReturn();
         String content = mvcResult.getResponse().getContentAsString();
         Resource res = new ObjectMapper().readValue(content, Resource.class);
         assertNotNull(res);

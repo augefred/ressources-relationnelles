@@ -1,18 +1,49 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.cesi.ressourcesrelationnelles.domain.User;
+import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
+import com.cesi.ressourcesrelationnelles.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 public class UsersController {
+    private final UserService userService;
+
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
-        return Collections.singletonList(new User());
+        return userService.list();
     }
 
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable long id) {
+        try {
+            return userService.findById(id);
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
+    }
+
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return userService.create(user);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUserById(@PathVariable long id) {
+        userService.delete(id);
+    }
+
+    @PutMapping("/users/{id}")
+    public User updateUserById(@PathVariable long id, @RequestBody User user) {
+        user.setId(id);
+        return userService.update(user);
+    }
 }
