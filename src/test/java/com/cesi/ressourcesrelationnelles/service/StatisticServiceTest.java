@@ -29,4 +29,9 @@ public class StatisticServiceTest {
         List<Statistic> stats = statService.list();
         assertEquals(1, stats.size());
     }
+
+    @Test
+    public void deleteStatisticTest(){
+        statService.delete(1);
+    }
 }
