@@ -31,7 +31,10 @@ public class ResourceService {
     }
 
     public Resource updateResource(Resource resource){
-        return resourceRepository.save(resource);
+        if(resourceRepository.findById(resource.getId()).isPresent()){
+            return resourceRepository.save(resource);
+        }
+        return new Resource();
     }
 
     public void deleteResource(long id){

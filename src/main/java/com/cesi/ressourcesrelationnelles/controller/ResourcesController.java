@@ -37,7 +37,8 @@ public class ResourcesController {
 
     @PutMapping("/resources")
     @ResponseBody
-    public Resource updateResource(@RequestBody Resource resource) {
+    public Resource updateResource(@PathVariable("id") Long id, @RequestBody Resource resource) {
+        resource.setId(id);
         return resourceService.updateResource(resource);
     }
 
