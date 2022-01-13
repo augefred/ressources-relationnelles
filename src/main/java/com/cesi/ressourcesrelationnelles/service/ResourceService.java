@@ -5,8 +5,9 @@ import com.cesi.ressourcesrelationnelles.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ResourceService {
 
@@ -21,8 +22,8 @@ public class ResourceService {
         return resourceRepository.findAll();
     }
 
-    public Resource getById(long id){
-        return resourceRepository.findAllById(Collections.singleton(id)).get(0);
+    public Optional<Resource> getById(long id){
+        return resourceRepository.findById(id);
     }
 
     public Resource createResource(Resource resource){

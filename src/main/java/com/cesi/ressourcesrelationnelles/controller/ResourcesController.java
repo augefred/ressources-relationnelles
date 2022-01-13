@@ -22,7 +22,11 @@ public class ResourcesController {
 
     @GetMapping("/resources/{id}")
     public Resource getResourceById(@PathVariable("id")Long id) {
-        return resourceService.getById(id);
+        Optional<Resource> resource = resourceService.getById(id);
+        if(resourceService.getById(id).isPresent()){
+            return resource.get();
+        }
+        return new Resource();
     }
 
     @PostMapping("/resources")
