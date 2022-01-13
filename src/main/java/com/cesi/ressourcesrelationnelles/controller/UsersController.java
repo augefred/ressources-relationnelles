@@ -1,14 +1,17 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.User;
+import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
 public class UsersController {
-    private UserService userService;
+    private final UserService userService;
 
     public UsersController(UserService userService) {
         this.userService = userService;
@@ -17,6 +20,15 @@ public class UsersController {
     @GetMapping("/users")
     public List<User> getAllUsers() {
         return userService.list();
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable long id) {
+        try {
+            return userService.findById(id);
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
     }
 
     @PostMapping("/users")
