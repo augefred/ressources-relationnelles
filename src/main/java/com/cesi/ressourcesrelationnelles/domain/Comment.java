@@ -1,27 +1,37 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Comment {
-    public Comment(int id, String nameUser, String nameUserParentComment, String commentMessage) {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String nameUser;
+    private String nameUserParentComment;
+    private String commentMessage;
+
+    public Comment(Long id, String nameUser, String nameUserParentComment, String commentMessage) {
         this.id = id;
         this.nameUser = nameUser;
         this.nameUserParentComment = nameUserParentComment;
         this.commentMessage = commentMessage;
     }
 
-    public int id;
-    public String nameUser;
-    public String nameUserParentComment;
-    public String commentMessage;
+
 
     public Comment() {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

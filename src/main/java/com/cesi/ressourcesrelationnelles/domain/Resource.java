@@ -1,18 +1,33 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "RESOURCE")
 public class Resource {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO,
+            generator = "seq_post"
+    )
+    @SequenceGenerator(
+            name = "seq_post"
+    )
+    @Column(name = "ID")
+    private long id;
+    @Column(name = "TITLE")
     private String title;
+    @Column(name = "DATEPUBLICATION")
     private Date datePublication;
+    @Column(name = "URL")
     private String url;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
