@@ -1,6 +1,7 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
+import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ResourceServiceTest {
@@ -34,5 +35,18 @@ public class ResourceServiceTest {
         String date = dateFormat.format(resource.getDatePublication());
         assertEquals("2022-01-12 12:55:10", date);
         assertEquals("C:/Users", resource.getUrl());
+    }
+
+    @Test
+    public void updateException() throws ResourceNotFoundException {
+        try{
+            Resource res = new Resource();
+            res.setId(-1);
+            resourceService.updateResource(res);
+            fail();
+        }
+        catch (ResourceNotFoundException ex){
+            assertEquals("Resource not found", ex.getMessage());
+        }
     }
 }

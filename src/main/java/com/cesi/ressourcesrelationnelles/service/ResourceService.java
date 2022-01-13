@@ -1,6 +1,7 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
+import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,11 +31,11 @@ public class ResourceService {
         return resourceRepository.save(resource);
     }
 
-    public Resource updateResource(Resource resource){
+    public Resource updateResource(Resource resource) throws ResourceNotFoundException {
         if(resourceRepository.findById(resource.getId()).isPresent()){
             return resourceRepository.save(resource);
         }
-        return new Resource();
+        throw new ResourceNotFoundException();
     }
 
     public void deleteResource(long id){
