@@ -39,14 +39,11 @@ public class ResourceServiceTest {
 
     @Test
     public void updateException() throws ResourceNotFoundException {
-        try{
             Resource res = new Resource();
             res.setId(-1);
-            resourceService.updateResource(res);
-            fail();
-        }
-        catch (ResourceNotFoundException ex){
-            assertEquals("Resource not found", ex.getMessage());
-        }
+            assertThrows(ResourceNotFoundException.class, ()->{
+                resourceService.updateResource(res);
+            });
+
     }
 }
