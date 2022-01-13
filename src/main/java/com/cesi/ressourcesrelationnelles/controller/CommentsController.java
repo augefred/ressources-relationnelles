@@ -21,12 +21,13 @@ public class CommentsController {
         if(commentService.getById(id).isPresent()){
             return comment.get();
         }
-        return new Comment();
+        return null;
     }
 
-    @PutMapping("/comments")
+    @PutMapping("/comments/{id}")
     @ResponseBody
-    public Comment updateComment(@RequestBody Comment comment) {
+    public Comment updateComment(@PathVariable long id,@RequestBody Comment comment) {
+        comment.setId(id);
         return commentService.updateComment(comment);
     }
 
