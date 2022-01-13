@@ -50,7 +50,7 @@ public class StatisticServiceTest {
 
     @Test
     public void findStatisticByIdNoExistingTest() {
-        assertThrows(NotFoundException.class, () -> {
+        assertThrowsExactly(NotFoundException.class, () -> {
             Statistic actualStat = statService.getStatistic(-27);
         });
     }

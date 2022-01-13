@@ -42,11 +42,6 @@ public class StatisticService {
     }
 
     public Statistic getStatistic(long id) throws NotFoundException {
-        Optional<Statistic> stat = this.statisticRepository.findById(id);
-        if (stat.isPresent()) {
-            return stat.get();
-        } else {
-            throw new NotFoundException("Statistique non trouvée");
-        }
+        return this.statisticRepository.findById(id).orElseThrow(() -> new NotFoundException("Statistique non trouvée"));
     }
 }
