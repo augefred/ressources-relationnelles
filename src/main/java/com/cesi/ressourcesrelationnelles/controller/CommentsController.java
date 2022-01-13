@@ -1,8 +1,12 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Comment;
+import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.service.CommentService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,11 +21,13 @@ public class CommentsController {
 
     @GetMapping("/comments/{id}")
     public Comment getCommentById(@PathVariable("id")Long id) {
-        Optional<Comment> comment = commentService.getById(id);
-        if(commentService.getById(id).isPresent()){
-            return comment.get();
+        try{
+             return commentService.findById(id);
         }
-        return null;
+        catch (NotFoundException e){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND ,e.getMessage(),e);
+        }
+
     }
 
     @PutMapping("/comments/{id}")
