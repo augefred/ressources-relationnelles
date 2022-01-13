@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.cesi</groupId>
     <artifactId>ressources-relationnelles</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>ressources-relationnelles</name>
     <description>Projet CUBE CESI RIL 2021</description>

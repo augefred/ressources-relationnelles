@@ -1,61 +1,54 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
+import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
+import com.cesi.ressourcesrelationnelles.service.ResourceService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 
 @RestController
 public class ResourcesController {
 
-    List<Resource> resources = new ArrayList<>();
+    private ResourceService resourceService;
+
+    public ResourcesController(ResourceService resourceService){
+        this.resourceService = resourceService;
+    }
 
     @GetMapping("/resources")
     public List<Resource> getAllResources() {
-        return resources;
+        return resourceService.list();
     }
 
     @GetMapping("/resources/{id}")
     public Resource getResourceById(@PathVariable("id")Long id) {
-        for(int i=0;i<resources.size();i++){
-            if(resources.get(i).getId() == id){
-                return resources.get(i);
-            }
+        try{
+            return resourceService.getById(id);
         }
-        return new Resource();
+        catch (ResourceNotFoundException ex){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+        }
     }
 
     @PostMapping("/resources")
-    public String addRessource(Resource resource) {
-        for(int i=0;i<resources.size();i++){
-            if(resources.get(i) == resource){
-                return "La ressource n'a pas pu être ajoutée";
-            }
-        }
-        resources.add(resource);
-        return "La resource a bien été ajoutée";
+    @ResponseBody
+    public Resource addRessource(@RequestBody Resource resource) {
+        return resourceService.createResource(resource);
     }
 
-    @PutMapping("/resources/{id}")
-    public String updateResource(@PathVariable("id")Long id, Resource resource) {
-        for(int i=0;i<resources.size();i++){
-            if(resources.get(i).getId() == id){
-                resources.remove(i);
-                resources.add(resource);
-                return "La ressource a été modifiée";
-            }
-        }
-        return "Aucune ressource n'a été modifiée";
+    @PutMapping("/resources")
+    @ResponseBody
+    public Resource updateResource(@PathVariable("id") Long id, @RequestBody Resource resource) throws ResourceNotFoundException {
+        resource.setId(id);
+        return resourceService.updateResource(resource);
     }
 
-    @DeleteMapping("/ressources/{id}")
-    public String addRessource(@PathVariable("id")Long id) {
-        for(int i=0;i<resources.size();i++){
-            if(resources.get(i).getId() == id){
-                resources.remove(i);
-                return "La ressource a été supprimée";
-            }
-        }
-        return "Aucune ressource n'a été supprimée";
+    @DeleteMapping("/resources/{id}")
+    public String deleteResource(@PathVariable("id")Long id) {
+        resourceService.deleteResource(id);
+        return "Ressource supprimée";
     }
 }
