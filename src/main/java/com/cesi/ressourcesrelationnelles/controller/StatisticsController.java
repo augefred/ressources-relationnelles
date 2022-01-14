@@ -21,8 +21,13 @@ public class StatisticsController {
     }
 
     @GetMapping("/statistics")
-    public List<Statistic> getALlStatistic(@RequestParam int nbVues) {
-        return statService.list(nbVues);
+    public List<Statistic> getALlStatistic(@RequestParam(required = false) Integer nbVues) {
+
+        if (nbVues != null) {
+            return statService.list(nbVues);
+        }
+        return statService.list();
+
     }
 
     @PostMapping("/statistics")

@@ -24,9 +24,9 @@ public class StatisticService {
         return this.statisticRepository.findAll();
     }
 
-    public List<Statistic> list(int nbVues) {
+    public List<Statistic> list(Integer nbVues) {
         List<Statistic> listStats = this.statisticRepository.findAll();
-        listStats = listStats.stream().filter(stat -> (stat.getNbVues() == nbVues)).collect(Collectors.toList());
+        listStats = listStats.stream().filter(stat -> (stat.getNbVues() == nbVues.intValue())).collect(Collectors.toList());
         return listStats;
     }
 
