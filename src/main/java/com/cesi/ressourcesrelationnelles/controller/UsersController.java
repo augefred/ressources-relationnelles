@@ -2,6 +2,8 @@ package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.User;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
+import com.cesi.ressourcesrelationnelles.infrastructure.UserDto;
+import com.cesi.ressourcesrelationnelles.infrastructure.UserMapper;
 import com.cesi.ressourcesrelationnelles.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +41,10 @@ public class UsersController {
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
-        return userService.create(user);
+    public UserDto createUser(@RequestBody User user) {
+        UserMapper userMapper = new UserMapper();
+
+        return userMapper.toDto(userService.create(user));
     }
 
     @DeleteMapping("/users/{id}")
@@ -49,8 +53,9 @@ public class UsersController {
     }
 
     @PutMapping("/users/{id}")
-    public User updateUserById(@PathVariable long id, @RequestBody User user) {
+    public UserDto updateUserById(@PathVariable long id, @RequestBody User user) {
         user.setId(id);
-        return userService.update(user);
+        UserMapper userMapper = new UserMapper();
+        return userMapper.toDto(userService.update(user));
     }
 }
