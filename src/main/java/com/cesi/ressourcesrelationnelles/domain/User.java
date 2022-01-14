@@ -17,6 +17,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private Title title;
 
     public User() {
     }
@@ -65,5 +66,13 @@ public class User {
 
     private String buildFullName(String firstName, String lastName) {
         return firstName + lastName;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
     }
 }
