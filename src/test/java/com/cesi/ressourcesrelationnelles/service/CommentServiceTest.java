@@ -36,9 +36,8 @@ class CommentServiceTest {
     @Test
     void deleteCommentTest(){
         commentRepository.deleteAll();
-
-        commentService.createComment(new Comment());
-        commentService.deleteComment(1);
+        Comment comment = commentService.createComment(new Comment());
+        commentService.deleteComment(comment.getId());
     }
 
     @Test
