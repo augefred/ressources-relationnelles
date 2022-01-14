@@ -1,6 +1,7 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Comment;
+import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -32,8 +33,15 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
-    public Optional<Comment> getById(long id){
-        return commentRepository.findById(id);
+    public Comment findById(long id) throws NotFoundException {
+        Optional<Comment> optionalComment = commentRepository.findById(id);
+        if (optionalComment.isPresent()) {
+            return optionalComment.get();
+
+        } else {
+            throw new NotFoundException("user not found");
+
+        }
     }
 
 }
