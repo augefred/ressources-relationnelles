@@ -6,7 +6,7 @@ import com.cesi.ressourcesrelationnelles.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -18,6 +18,20 @@ public class UserService {
 
     public List<User> list() {
         return userRepository.findAll();
+    }
+
+    public List<User> list(String lastName, String firstName) {
+        List<User> userList = userRepository.findAll();
+        if (lastName != null) {
+            userList = userList.stream().filter(user ->
+                    user.getLastName().equals(lastName)).collect(Collectors.toList());
+        }
+        if (firstName != null) {
+            userList = userList.stream().filter(user ->
+                    user.getFirstName().equals(firstName)).collect(Collectors.toList());
+        }
+
+        return userList;
     }
 
     public User create(User user) {
@@ -34,13 +48,6 @@ public class UserService {
     }
 
     public User findById(long id) throws NotFoundException {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-
-        } else {
-            throw new NotFoundException("user not found");
-
-        }
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
     }
 }

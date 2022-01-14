@@ -1,12 +1,14 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     @Id
     @GeneratedValue
@@ -16,6 +18,15 @@ public class User {
     private String lastName;
     private String password;
 
+    public User() {
+    }
+
+
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getLastName() {
         return lastName;
     }
@@ -24,9 +35,9 @@ public class User {
         this.lastName = lastName;
     }
 
-//    public String getFullName() {
-//        return buildFullName(firstName , lastName);
-//    }
+    public String getFullName() {
+        return buildFullName(firstName, lastName);
+    }
 
     public long getId() {
         return id;
@@ -51,7 +62,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    private String buildFullName(String firstName, String lastName){
+
+    private String buildFullName(String firstName, String lastName) {
         return firstName + lastName;
     }
 }

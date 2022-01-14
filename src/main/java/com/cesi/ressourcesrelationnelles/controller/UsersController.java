@@ -21,7 +21,10 @@ public class UsersController {
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(@RequestParam(required = false) String lastName, @RequestParam(required = false) String firstName) {
+        if (lastName != null || firstName != null) {
+            return userService.list(lastName, firstName);
+        }
         return userService.list();
     }
 
