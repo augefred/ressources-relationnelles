@@ -20,7 +20,6 @@ class UserServiceTest {
     @Autowired
     public UserRepository userRepository;
 
-
     @Test
     void createUserTest() {
         userRepository.deleteAll();
