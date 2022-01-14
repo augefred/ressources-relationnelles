@@ -6,6 +6,7 @@ import com.cesi.ressourcesrelationnelles.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentService {
@@ -42,6 +43,15 @@ public class CommentService {
             throw new NotFoundException("user not found");
 
         }
+    }
+
+    public List<Comment> list(String nameUserParentComment){
+        List<Comment> comments = commentRepository.findAll();
+        if (nameUserParentComment != null){
+            comments = comments.stream().filter(comment ->
+                comment.getNameUserParentComment().equals(nameUserParentComment)).collect(Collectors.toList());
+        }
+        return comments;
     }
 
 }
