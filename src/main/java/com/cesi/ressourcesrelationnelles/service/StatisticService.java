@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StatisticService {
@@ -21,6 +22,12 @@ public class StatisticService {
 
     public List<Statistic> list() {
         return this.statisticRepository.findAll();
+    }
+
+    public List<Statistic> list(Integer nbVues) {
+        List<Statistic> listStats = this.statisticRepository.findAll();
+        listStats = listStats.stream().filter(stat -> (stat.getNbVues() == nbVues.intValue())).collect(Collectors.toList());
+        return listStats;
     }
 
     public Statistic create(Statistic statistic) {
