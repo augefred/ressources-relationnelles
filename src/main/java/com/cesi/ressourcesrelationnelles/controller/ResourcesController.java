@@ -12,15 +12,18 @@ import java.util.*;
 @RestController
 public class ResourcesController {
 
-    private ResourceService resourceService;
+    private final ResourceService resourceService;
 
     public ResourcesController(ResourceService resourceService){
         this.resourceService = resourceService;
     }
 
     @GetMapping("/resources")
-    public List<Resource> getAllResources() {
-        return resourceService.list();
+    public List<Resource> getResourcesbyDate(@RequestParam(required = false) Date date) {
+        if(date == null) {
+            return resourceService.list();
+        }
+        return resourceService.list(date);
     }
 
     @GetMapping("/resources/{id}")

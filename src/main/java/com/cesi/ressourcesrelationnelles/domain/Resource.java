@@ -23,6 +23,15 @@ public class Resource {
     @Column(name = "URL")
     private String url;
 
+    public Resource(){
+    }
+
+    public Resource(String titre, Date date, String url) {
+        this.title = titre;
+        this.datePublication = date;
+        this.url = url;
+    }
+
     public long getId() {
         return id;
     }

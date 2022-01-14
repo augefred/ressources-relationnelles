@@ -8,9 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,17 +40,23 @@ class ResourceServiceTest {
 
     @Test
     void getByIdException(){
-        assertThrows(ResourceNotFoundException.class, ()->{
-            resourceService.getById(-1);
-        });
+        assertThrows(ResourceNotFoundException.class, ()-> resourceService.getById(-1));
     }
-    @Test
-    void updateException() throws ResourceNotFoundException {
-            Resource res = new Resource();
-            res.setId(-1);
-            assertThrows(ResourceNotFoundException.class, ()->{
-                resourceService.updateResource(res);
-            });
 
+    @Test
+    void updateException() {
+        Resource res = new Resource();
+        res.setId(-1);
+        assertThrows(ResourceNotFoundException.class, ()-> resourceService.updateResource(res));
+    }
+
+    @Test
+    void getResourcesByDate() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateInString = "2022-01-12 12:55:10";
+        Date date = formatter.parse(dateInString);
+        List<Resource> resources = resourceService.list(date);
+        assertEquals(1, resources.size());
+        assertEquals(date, resources.get(0).getDatePublication());
     }
 }
