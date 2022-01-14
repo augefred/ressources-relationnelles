@@ -50,7 +50,10 @@ public class CommentsController {
     }
 
     @GetMapping("/comments")
-    public List<Comment> getAllComment() {
+    public List<Comment> getAllComment(@RequestParam(required = false) String nameUserParentComment) {
+        if (nameUserParentComment != null) {
+            return commentService.list(nameUserParentComment);
+        }
        return  commentService.list();
     }
 
