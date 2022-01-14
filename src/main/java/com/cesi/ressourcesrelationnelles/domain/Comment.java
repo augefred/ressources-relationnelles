@@ -1,10 +1,12 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.tomcat.jni.Address;
+
+import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
 
     @Id
@@ -13,6 +15,24 @@ public class Comment {
     private String nameUser;
     private String nameUserParentComment;
     private String commentMessage;
+
+    public LikeDislike getLikeDislike() {
+        return likeDislike;
+    }
+
+    public void setLikeDislike(LikeDislike likeDislike) {
+        this.likeDislike = likeDislike;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private LikeDislike likeDislike;
+
+
+
+
+
+
+
 
     public Comment(Long id, String nameUser, String nameUserParentComment, String commentMessage) {
         this.id = id;
