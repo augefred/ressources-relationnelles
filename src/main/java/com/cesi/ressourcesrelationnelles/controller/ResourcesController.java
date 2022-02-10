@@ -45,7 +45,7 @@ public class ResourcesController {
     @PutMapping("/resources")
     @ResponseBody
     public Resource updateResource(@PathVariable("id") Long id, @RequestBody Resource resource) throws ResourceNotFoundException {
-        resource.setId(id);
+        resource.setRES_ID(id);
         return resourceService.updateResource(resource);
     }
 

@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
-import com.cesi.ressourcesrelationnelles.domain.User;
 import com.cesi.ressourcesrelationnelles.repository.ResourceRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,7 +13,6 @@ import org.springframework.test.context.event.annotation.BeforeTestClass;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +49,6 @@ class ResourceServiceMockedTest {
         assertNotNull(resources);
         //Then
         assertEquals(1, resources.size());
-        assertEquals(date, resources.get(0).getDatePublication());
+        assertEquals(date, resources.get(0).getRES_DatePublication());
     }
 }

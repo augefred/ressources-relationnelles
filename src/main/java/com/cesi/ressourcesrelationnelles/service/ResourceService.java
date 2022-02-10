@@ -27,7 +27,7 @@ public class ResourceService {
 
     public List<Resource> list(Date date){
         List<Resource> resources = resourceRepository.findAll();
-        resources = resources.stream().filter(resource -> resource.getDatePublication().compareTo(date) == (0)).collect(Collectors.toList());
+        resources = resources.stream().filter(resource -> resource.getRES_DatePublication().compareTo(date) == (0)).collect(Collectors.toList());
         return resources;
     }
 
@@ -44,7 +44,7 @@ public class ResourceService {
     }
 
     public Resource updateResource(Resource resource) throws ResourceNotFoundException {
-        if(resourceRepository.findById(resource.getId()).isPresent()){
+        if(resourceRepository.findById(resource.getRES_ID()).isPresent()){
             return resourceRepository.save(resource);
         }
         throw new ResourceNotFoundException();
