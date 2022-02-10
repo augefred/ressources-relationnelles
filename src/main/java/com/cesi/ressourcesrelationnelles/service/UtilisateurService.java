@@ -1,40 +1,40 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.User;
+import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
-import com.cesi.ressourcesrelationnelles.repository.UserRepository;
+import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
-    private final UserRepository userRepository;
+public class UtilisateurService {
+    private final UtilisateurRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UtilisateurService(UtilisateurRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<User> list() {
+    public List<Utilisateur> list() {
         return userRepository.findAll();
     }
 
-    public List<User> list(String lastName, String firstName) {
-        List<User> userList = userRepository.findAll();
+    public List<Utilisateur> list(String lastName, String firstName) {
+        List<Utilisateur> userList = userRepository.findAll();
         if (lastName != null) {
             userList = userList.stream().filter(user ->
-                    user.getLastName().equals(lastName)).collect(Collectors.toList());
+                    user.getUTI_Nom().equals(lastName)).collect(Collectors.toList());
         }
         if (firstName != null) {
             userList = userList.stream().filter(user ->
-                    user.getFirstName().equals(firstName)).collect(Collectors.toList());
+                    user.getUTI_Prenom().equals(firstName)).collect(Collectors.toList());
         }
 
         return userList;
     }
 
-    public User create(User user) {
+    public Utilisateur create(Utilisateur user) {
         return userRepository.save(user);
     }
 
@@ -42,12 +42,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User update(User user) {
+    public Utilisateur update(Utilisateur user) {
         return userRepository.save(user);
 
     }
 
-    public User findById(long id) throws NotFoundException {
+    public Utilisateur findById(long id) throws NotFoundException {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
     }
 }

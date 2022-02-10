@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.Resource;
+import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ResourceServiceTest {
     @Autowired
-    private ResourceService resourceService;
+    private RessourceService resourceService;
 
     @Test
     void whenApplicationStarts_thenHibernateCreatesInitialRecords(){
-        List<Resource> resources = resourceService.list();
+        List<Ressource> resources = resourceService.list();
         assertEquals(3, resources.size());
     }
 
     @Test
     void getById() throws ResourceNotFoundException {
-        Resource resource = resourceService.getById(1);
+        Ressource resource = resourceService.getById(1);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         assertEquals(1, resource.getRES_ID());
         assertEquals("titre", resource.getRES_Title());
@@ -42,7 +42,7 @@ class ResourceServiceTest {
 
     @Test
     void updateException() {
-        Resource res = new Resource();
+        Ressource res = new Ressource();
         res.setRES_ID(-1);
         assertThrows(ResourceNotFoundException.class, ()-> resourceService.updateResource(res));
     }
@@ -52,7 +52,7 @@ class ResourceServiceTest {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateInString = "2022-01-12 12:55:10";
         Date date = formatter.parse(dateInString);
-        List<Resource> resources = resourceService.list(date);
+        List<Ressource> resources = resourceService.list(date);
         assertEquals(1, resources.size());
         assertEquals(date, resources.get(0).getRES_DatePublication());
     }

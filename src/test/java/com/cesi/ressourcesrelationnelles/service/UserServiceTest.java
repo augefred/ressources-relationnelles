@@ -1,8 +1,8 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.User;
+import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
-import com.cesi.ressourcesrelationnelles.repository.UserRepository;
+import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceTest {
 
     @Autowired
-    public UserService userService;
+    public UtilisateurService userService;
 
     @Autowired
-    public UserRepository userRepository;
+    public UtilisateurRepository userRepository;
 
     @Test
     void createUserTest() {
         userRepository.deleteAll();
 
-        userService.create(new User());
-        List<User> users = userService.list();
+        userService.create(new Utilisateur());
+        List<Utilisateur> users = userService.list();
         assertEquals(1, users.size());
     }
 
@@ -33,8 +33,8 @@ class UserServiceTest {
     void findUserByIdTest() throws NotFoundException {
         userRepository.deleteAll();
 
-        User user = userService.create(new User());
-        User actualUser = userService.findById(user.getId());
+        Utilisateur user = userService.create(new Utilisateur());
+        Utilisateur actualUser = userService.findById(user.getUTI_ID());
         assertNotNull(actualUser);
     }
 
@@ -43,7 +43,7 @@ class UserServiceTest {
         userRepository.deleteAll();
 
         assertThrowsExactly(NotFoundException.class, () -> {
-            User actualUser = userService.findById(-27);
+            Utilisateur actualUser = userService.findById(-27);
         });
     }
 
@@ -52,14 +52,14 @@ class UserServiceTest {
         // Given
         userRepository.deleteAll();
 
-        userService.create(new User("fred", "auge"));
-        userService.create(new User("fred", "foo"));
+        userService.create(new Utilisateur("fred", "auge"));
+        userService.create(new Utilisateur("fred", "foo"));
         // when
-        List<User> users = userService.list("foo", null);
+        List<Utilisateur> users = userService.list("foo", null);
         assertNotNull(users);
         //Then
         assertEquals(1, users.size());
-        assertEquals("foo", users.get(0).getLastName());
+        assertEquals("foo", users.get(0).getUTI_Nom());
     }
 
     @Test
@@ -67,10 +67,10 @@ class UserServiceTest {
         // Given
         userRepository.deleteAll();
 
-        userService.create(new User("fred", "auge"));
-        userService.create(new User("fred", "foo"));
+        userService.create(new Utilisateur("fred", "auge"));
+        userService.create(new Utilisateur("fred", "foo"));
         // when
-        List<User> users = userService.list("bar", "");
+        List<Utilisateur> users = userService.list("bar", "");
         assertNotNull(users);
         //Then
         assertEquals(0, users.size());
@@ -81,14 +81,14 @@ class UserServiceTest {
         // Given
         userRepository.deleteAll();
 
-        userService.create(new User("fred", "auge"));
-        userService.create(new User("fred", "foo"));
+        userService.create(new Utilisateur("fred", "auge"));
+        userService.create(new Utilisateur("fred", "foo"));
         // when
-        List<User> users = userService.list("foo", "fred");
+        List<Utilisateur> users = userService.list("foo", "fred");
         assertNotNull(users);
         //Then
         assertEquals(1, users.size());
-        assertEquals("foo", users.get(0).getLastName());
-        assertEquals("fred", users.get(0).getFirstName());
+        assertEquals("foo", users.get(0).getUTI_Nom());
+        assertEquals("fred", users.get(0).getUTI_Prenom());
     }
 }

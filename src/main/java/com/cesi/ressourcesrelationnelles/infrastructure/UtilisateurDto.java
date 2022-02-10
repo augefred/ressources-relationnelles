@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.infrastructure;
 
-public class UserDto {
+public class UtilisateurDto {
     private long id;
     private String lastName;
     private String firstName;

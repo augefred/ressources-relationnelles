@@ -1,13 +1,12 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Comment {
+public class Commentaire {
 
     @Id
     @GeneratedValue
@@ -34,7 +33,7 @@ public class Comment {
 
 
 
-    public Comment(Long id, String nameUser, String nameUserParentComment, String commentMessage) {
+    public Commentaire(Long id, String nameUser, String nameUserParentComment, String commentMessage) {
         this.id = id;
         this.nameUser = nameUser;
         this.nameUserParentComment = nameUserParentComment;
@@ -43,7 +42,7 @@ public class Comment {
 
 
 
-    public Comment() {
+    public Commentaire() {
     }
 
 
