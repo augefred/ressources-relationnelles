@@ -23,17 +23,16 @@ public class Ressource {
     @Column(name = "res_datemodification")
     private Date RES_DateModification;
     @Column(name = "res_visibilite")
-    private boolean RES_Visibilite;
+    private boolean RES_Visibilite = true;
     @Column(name = "res_repertoirecontenu")
     private String RES_URL;
     @Column(name = "res_validation")
-    private String RES_Validation;
+    private boolean RES_Validation = true;
     @Column(name = "res_nbvues")
-    private String RES_NbVues;
+    private int RES_NbVues;
     @Column(name = "categ_id")
-    private String CATEG_ID;
-    //@Column(name = "uti_id")
-    @ManyToOne
+    private int CATEG_ID; //Ajout de la classe catégorie !
+    @OneToOne
     @JoinColumn(name="uti_id")
     private Utilisateur UTI_ID;
 
@@ -44,6 +43,54 @@ public class Ressource {
         this.RES_Title = titre;
         this.RES_DatePublication = date;
         this.RES_URL = url;
+    }
+
+    public Date getRES_DateModification() {
+        return RES_DateModification;
+    }
+
+    public void setRES_DateModification(Date RES_DateModification) {
+        this.RES_DateModification = RES_DateModification;
+    }
+
+    public boolean isRES_Visibilite() {
+        return RES_Visibilite;
+    }
+
+    public void setRES_Visibilite(boolean RES_Visibilite) {
+        this.RES_Visibilite = RES_Visibilite;
+    }
+
+    public boolean isRES_Validation() {
+        return RES_Validation;
+    }
+
+    public void setRES_Validation(boolean RES_Validation) {
+        this.RES_Validation = RES_Validation;
+    }
+
+    public int getRES_NbVues() {
+        return RES_NbVues;
+    }
+
+    public void setRES_NbVues(int RES_NbVues) {
+        this.RES_NbVues = RES_NbVues;
+    }
+
+    public Integer getCATEG_ID() {
+        return CATEG_ID;
+    }
+
+    public void setCATEG_ID(Integer CATEG_ID) {
+        this.CATEG_ID = CATEG_ID;
+    }
+
+    public Utilisateur getUTI_ID() {
+        return UTI_ID;
+    }
+
+    public void setUTI_ID(Utilisateur UTI_ID) {
+        this.UTI_ID = UTI_ID;
     }
 
     public long getRES_ID() {
@@ -76,53 +123,5 @@ public class Ressource {
 
     public void setRES_URL(String RES_URL) {
         this.RES_URL = RES_URL;
-    }
-
-    public Date getRES_DateModification() {
-        return RES_DateModification;
-    }
-
-    public void setRES_DateModification(Date RES_DateModification) {
-        this.RES_DateModification = RES_DateModification;
-    }
-
-    public boolean isRES_Visibilite() {
-        return RES_Visibilite;
-    }
-
-    public void setRES_Visibilite(boolean RES_Visibilite) {
-        this.RES_Visibilite = RES_Visibilite;
-    }
-
-    public String getRES_Validation() {
-        return RES_Validation;
-    }
-
-    public void setRES_Validation(String RES_Validation) {
-        this.RES_Validation = RES_Validation;
-    }
-
-    public String getRES_NbVues() {
-        return RES_NbVues;
-    }
-
-    public void setRES_NbVues(String RES_NbVues) {
-        this.RES_NbVues = RES_NbVues;
-    }
-
-    public String getCATEG_ID() {
-        return CATEG_ID;
-    }
-
-    public void setCATEG_ID(String CATEG_ID) {
-        this.CATEG_ID = CATEG_ID;
-    }
-
-    public Utilisateur getUTI_ID() {
-        return UTI_ID;
-    }
-
-    public void setUTI_ID(Utilisateur UTI_ID) {
-        this.UTI_ID = UTI_ID;
     }
 }

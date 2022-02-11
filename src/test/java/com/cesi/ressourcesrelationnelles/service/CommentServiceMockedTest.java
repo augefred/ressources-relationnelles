@@ -32,8 +32,8 @@ class CommentServiceMockedTest {
     @Test
     void findCommentByIdMockTest(){
         List<Commentaire> mockComment = new ArrayList<>();
-        mockComment.add(new Commentaire(1L,"pol", "bar","bar"));
-        mockComment.add(new Commentaire(1L,"pol", "foo","foo"));
+        mockComment.add(new Commentaire(1L,"pol", "bar"));
+        mockComment.add(new Commentaire(1L,"pol","foo"));
 
         Mockito.when(commentRepository.findAll()).thenReturn(mockComment);
 
@@ -47,8 +47,8 @@ class CommentServiceMockedTest {
     @Test
     void findCommentByIdMockNoResultTest(){
         List<Commentaire> mockComment = new ArrayList<>();
-        mockComment.add(new Commentaire(1L,"pol", "bar","bar"));
-        mockComment.add(new Commentaire(1L,"pol", "foo","foo"));
+        mockComment.add(new Commentaire(1L,"pol","bar"));
+        mockComment.add(new Commentaire(1L,"pol","foo"));
 
         Mockito.when(commentRepository.findAll()).thenReturn(mockComment);
 

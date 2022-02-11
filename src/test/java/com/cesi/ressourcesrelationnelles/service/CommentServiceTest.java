@@ -33,7 +33,7 @@ class CommentServiceTest {
     void deleteCommentTest(){
         commentRepository.deleteAll();
         Commentaire comment = commentService.createComment(new Commentaire());
-        commentService.deleteComment(comment.getId());
+        commentService.deleteComment(comment.getCOM_ID());
     }
 
     @Test
@@ -41,7 +41,7 @@ class CommentServiceTest {
         commentRepository.deleteAll();
 
         Commentaire comment = commentService.createComment(new Commentaire());
-        Commentaire actualComment = commentService.findById(comment.getId());
+        Commentaire actualComment = commentService.findById(comment.getCOM_ID());
         assertNotNull(actualComment);
     }
 
@@ -59,8 +59,8 @@ class CommentServiceTest {
         //given
         commentRepository.deleteAll();
 
-        commentService.createComment(new Commentaire(1L,"nom","nomPapa","ThatWhatSheSaid"));
-        commentService.createComment(new Commentaire(1L,"prénom","nomPopo","ThatNotWhatSheSaid"));
+        commentService.createComment(new Commentaire(1L,"nom","ThatWhatSheSaid"));
+        commentService.createComment(new Commentaire(1L,"prénom","ThatNotWhatSheSaid"));
         //when
         List<Commentaire> comments =   commentService.list("nomPopo");
         assertNotNull(comments);

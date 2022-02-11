@@ -38,7 +38,7 @@ public class CommentaireController {
     @PutMapping("/commentaire/{id}")
     @ResponseBody
     public Commentaire updateCommentaire(@PathVariable long id, @RequestBody Commentaire comment) {
-        comment.setId(id);
+        comment.setCOM_ID(id);
         return commentaireService.updateComment(comment);
     }
 

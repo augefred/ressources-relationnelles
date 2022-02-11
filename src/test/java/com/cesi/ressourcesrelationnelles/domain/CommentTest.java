@@ -11,9 +11,9 @@ public class CommentTest {
     @Test
     public void createComment() {
         Commentaire comment = new Commentaire();
-        comment.setCommentMessage("Un message généreux");
+        comment.setCOM_Contenu("Un message généreux");
         Assert.notNull(comment);
-        assertEquals("Un message généreux", comment.getCommentMessage());
+        assertEquals("Un message généreux", comment.getCOM_Contenu());
     }
 
 

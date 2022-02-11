@@ -49,7 +49,7 @@ public class CommentaireService {
         List<Commentaire> comments = commentRepository.findAll();
         if (nameUserParentComment != null){
             comments = comments.stream().filter(comment ->
-                comment.getNameUserParentComment().equals(nameUserParentComment)).collect(Collectors.toList());
+                comment.getCOM_Contenu().equals(nameUserParentComment)).collect(Collectors.toList());
         }
         return comments;
     }
