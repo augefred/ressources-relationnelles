@@ -1,9 +1,12 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Commentaire;
+import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.CommentaireRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +22,12 @@ public class CommentaireService {
     }
 
     public List<Commentaire> list() {
-        return commentRepository.findAll();
+        List<Commentaire> commentaires = new ArrayList<>();
+        Iterable<Commentaire> iterable = commentRepository.findAll();
+        for (Commentaire item : iterable) {
+            commentaires.add(item);
+        }
+        return commentaires;
     }
 
     public Commentaire createComment(Commentaire comment){
@@ -46,12 +54,16 @@ public class CommentaireService {
     }
 
     public List<Commentaire> list(String nameUserParentComment){
-        List<Commentaire> comments = commentRepository.findAll();
+        List<Commentaire> commentaires = new ArrayList<>();
+        Iterable<Commentaire> iterable = commentRepository.findAll();
+        for (Commentaire item : iterable) {
+            commentaires.add(item);
+        }
         if (nameUserParentComment != null){
-            comments = comments.stream().filter(comment ->
+            commentaires = commentaires.stream().filter(comment ->
                 comment.getCOM_Contenu().equals(nameUserParentComment)).collect(Collectors.toList());
         }
-        return comments;
+        return commentaires;
     }
 
 }

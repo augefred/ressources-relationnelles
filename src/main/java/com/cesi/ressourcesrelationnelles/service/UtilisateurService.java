@@ -1,10 +1,12 @@
 package com.cesi.ressourcesrelationnelles.service;
 
+import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,21 +19,30 @@ public class UtilisateurService {
     }
 
     public List<Utilisateur> list() {
-        return userRepository.findAll();
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        Iterable<Utilisateur> iterable = userRepository.findAll();
+        for (Utilisateur item : iterable) {
+            utilisateurs.add(item);
+        }
+        return utilisateurs;
     }
 
     public List<Utilisateur> list(String lastName, String firstName) {
-        List<Utilisateur> userList = userRepository.findAll();
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        Iterable<Utilisateur> iterable = userRepository.findAll();
+        for (Utilisateur item : iterable) {
+            utilisateurs.add(item);
+        }
         if (lastName != null) {
-            userList = userList.stream().filter(user ->
+            utilisateurs = utilisateurs.stream().filter(user ->
                     user.getUTI_Nom().equals(lastName)).collect(Collectors.toList());
         }
         if (firstName != null) {
-            userList = userList.stream().filter(user ->
+            utilisateurs = utilisateurs.stream().filter(user ->
                     user.getUTI_Prenom().equals(firstName)).collect(Collectors.toList());
         }
 
-        return userList;
+        return utilisateurs;
     }
 
     public Utilisateur create(Utilisateur user) {

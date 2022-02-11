@@ -23,22 +23,21 @@ public class RessourceService {
     }
 
     public List<Ressource> list(){
-        /*List<Ressource> resources = new ArrayList<>();
+        List<Ressource> resources = new ArrayList<>();
         Iterable<Ressource> iterable = resourceRepository.findAll();
         for (Ressource item : iterable) {
             resources.add(item);
-        }*/
-        List<Ressource> resources = resourceRepository.findAll();
+        }
+        //List<Ressource> resources = resourceRepository.findAll();
         return resources;
     }
 
     public List<Ressource> list(Date date){
-        /*List<Ressource> resources = new ArrayList<>();
+        List<Ressource> resources = new ArrayList<>();
         Iterable<Ressource> iterable = resourceRepository.findAll();
         for (Ressource item : iterable) {
             resources.add(item);
-        }*/
-        List<Ressource> resources = resourceRepository.findAll();
+        }
         resources = resources.stream().filter(resource -> resource.getRES_DatePublication().compareTo(date) == (0)).collect(Collectors.toList());
         return resources;
     }

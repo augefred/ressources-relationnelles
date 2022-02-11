@@ -1,6 +1,5 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import com.cesi.ressourcesrelationnelles.domain.Statistic;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -14,16 +13,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class StatisticsControllerTest {
 
-    @Autowired
+    /*@Autowired
     private MockMvc mvc;
 
     @Test
@@ -34,5 +30,5 @@ public class StatisticsControllerTest {
         List<Statistic> responsesStatsList = new ObjectMapper().readValue(contentAsString, new TypeReference<>() {
         });
         assertNotNull(responsesStatsList);
-    }
+    }*/
 }
