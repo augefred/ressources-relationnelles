@@ -2,8 +2,6 @@ package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
-import com.cesi.ressourcesrelationnelles.infrastructure.UtilisateurDto;
-import com.cesi.ressourcesrelationnelles.infrastructure.UtilisateurMapper;
 import com.cesi.ressourcesrelationnelles.service.UtilisateurService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +38,7 @@ public class UtilisateurController {
         }
     }
 
-    @PostMapping("/utilisateur")
+    /*@PostMapping("/utilisateur")
     public UtilisateurDto createUser(@RequestBody Utilisateur utilisateur) {
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
 
@@ -57,5 +55,5 @@ public class UtilisateurController {
         utilisateur.setUTI_ID(id);
         UtilisateurMapper utilisateurMapper = new UtilisateurMapper();
         return utilisateurMapper.toDto(utilisateurService.update(utilisateur));
-    }
+    }*/
 }

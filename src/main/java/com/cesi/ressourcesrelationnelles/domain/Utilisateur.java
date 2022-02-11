@@ -10,12 +10,6 @@ import java.util.Date;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "seq_post"
-    )
-    @SequenceGenerator(
-            name = "seq_post"
-    )
     @Column(name = "uti_id")
     private long UTI_ID;
     @Column(name = "uti_nom")

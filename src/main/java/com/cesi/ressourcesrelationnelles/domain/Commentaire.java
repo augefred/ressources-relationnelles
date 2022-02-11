@@ -10,7 +10,6 @@ import javax.persistence.*;
 public class Commentaire {
 
     @Id
-    @GeneratedValue
     @Column(name = "com_id")
     private Long COM_ID;
     @Column(name = "com_datepublication")

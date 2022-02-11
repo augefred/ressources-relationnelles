@@ -8,12 +8,6 @@ import java.util.Date;
 public class Ressource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "seq_post"
-    )
-    @SequenceGenerator(
-            name = "seq_post"
-    )
     @Column(name = "res_id")
     private long RES_ID;
     @Column(name = "res_titre")
