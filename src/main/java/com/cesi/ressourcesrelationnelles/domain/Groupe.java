@@ -1,11 +1,14 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "groupe")
-public class Groupe {
+@IdClass(Groupe.class)
+public class Groupe implements Serializable {
     @Id
+    @OneToOne
     @JoinColumn(name = "uti_id")
     private Utilisateur UTI_ID;
     @Id

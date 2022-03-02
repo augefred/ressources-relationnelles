@@ -16,15 +16,6 @@ public class Utilisateur {
     private String UTI_Nom;
     @Column(name = "uti_prenom")
     private String UTI_Prenom;
-
-    public Date getUTI_DateNaissance() {
-        return UTI_DateNaissance;
-    }
-
-    public void setUTI_DateNaissance(Date UTI_DateNaissance) {
-        this.UTI_DateNaissance = UTI_DateNaissance;
-    }
-
     @Column(name = "uti_datenaissance")
     private Date UTI_DateNaissance;
     @Column(name = "uti_motdepasse")

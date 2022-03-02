@@ -1,17 +1,18 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "lier")
-public class Lier {
+@IdClass(Lier.class)
+public class Lier implements Serializable {
     @Id
+    @OneToOne
     @JoinColumn(name = "res_id")
     private Ressource RES_ID;
     @Id
+    @OneToOne
     @JoinColumn(name = "tr_id")
     private TypeRessources TR_ID;
 }

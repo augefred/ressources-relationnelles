@@ -24,8 +24,14 @@ public class Ressource {
     private boolean RES_Validation = true;
     @Column(name = "res_nbvues")
     private int RES_NbVues;
-    @Column(name = "categ_id")
-    private int CATEG_ID; //Ajout de la classe catégorie !
+    @Column(name = "res_archive")
+    private boolean RES_Archive;
+    @OneToOne
+    @JoinColumn(name = "tr_id")
+    private TypeRessources TR_ID;
+    @OneToOne
+    @JoinColumn(name = "categ_id")
+    private Categories CATEG_ID;
     @OneToOne
     @JoinColumn(name="uti_id")
     private Utilisateur UTI_ID;
@@ -71,11 +77,11 @@ public class Ressource {
         this.RES_NbVues = RES_NbVues;
     }
 
-    public Integer getCATEG_ID() {
+    public Categories getCATEG_ID() {
         return CATEG_ID;
     }
 
-    public void setCATEG_ID(Integer CATEG_ID) {
+    public void setCATEG_ID(Categories CATEG_ID) {
         this.CATEG_ID = CATEG_ID;
     }
 
