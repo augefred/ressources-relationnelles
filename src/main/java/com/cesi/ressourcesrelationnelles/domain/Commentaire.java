@@ -16,39 +16,15 @@ public class Commentaire {
     private String COM_DatePublication;
     @Column(name = "com_contenu")
     private String COM_Contenu;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "com_id_1")
-    private Commentaire COM_ID_1;
-    @OneToOne
+    private Commentaire COM_ID_Parent;
+    @ManyToOne
     @JoinColumn(name = "res_id")
     private Ressource RES_ID;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "uti_id")
     private Utilisateur UTI_ID;
-
-    public Commentaire getCOM_ID_1() {
-        return COM_ID_1;
-    }
-
-    public void setCOM_ID_1(Commentaire COM_ID_1) {
-        this.COM_ID_1 = COM_ID_1;
-    }
-
-    public Ressource getRES_ID() {
-        return RES_ID;
-    }
-
-    public void setRES_ID(Ressource RES_ID) {
-        this.RES_ID = RES_ID;
-    }
-
-    public Utilisateur getUTI_ID() {
-        return UTI_ID;
-    }
-
-    public void setUTI_ID(Utilisateur UTI_ID) {
-        this.UTI_ID = UTI_ID;
-    }
 
     public Commentaire(Long id, String nameUser, String commentMessage) {
         this.COM_ID = id;
@@ -81,5 +57,29 @@ public class Commentaire {
 
     public void setCOM_Contenu(String COM_Contenu) {
         this.COM_Contenu = COM_Contenu;
+    }
+
+    public Commentaire getCOM_ID_Parent() {
+        return COM_ID_Parent;
+    }
+
+    public void setCOM_ID_Parent(Commentaire COM_ID_Parent) {
+        this.COM_ID_Parent = COM_ID_Parent;
+    }
+
+    public Ressource getRES_ID() {
+        return RES_ID;
+    }
+
+    public void setRES_ID(Ressource RES_ID) {
+        this.RES_ID = RES_ID;
+    }
+
+    public Utilisateur getUTI_ID() {
+        return UTI_ID;
+    }
+
+    public void setUTI_ID(Utilisateur UTI_ID) {
+        this.UTI_ID = UTI_ID;
     }
 }

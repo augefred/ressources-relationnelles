@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ressources")
-public class Ressource {
+public class RessourceFavoris {
 
     @Id
     @Column(name = "res_id")
@@ -33,14 +33,17 @@ public class Ressource {
     @ManyToOne
     @JoinColumn(name = "categ_id")
     private Categories CATEG_ID;
-    @ManyToOne
-    @JoinColumn(name="uti_id")
-    private Utilisateur UTI_ID;
+    //@ManyToMany(mappedBy = "uti_favoris", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "mettre_en_favoris",
+            joinColumns = { @JoinColumn(name = "res_id") },
+            inverseJoinColumns = { @JoinColumn(name = "uti_id") })
+    private List<Utilisateur> RES_Favoris;
 
-    public Ressource(){
+    public RessourceFavoris(){
     }
 
-    public Ressource(String titre, Date date, String url) {
+    public RessourceFavoris(String titre, Date date, String url) {
         this.RES_Title = titre;
         this.RES_DatePublication = date;
         this.RES_URL = url;
@@ -134,11 +137,11 @@ public class Ressource {
         this.CATEG_ID = CATEG_ID;
     }
 
-    public Utilisateur getUTI_ID() {
-        return UTI_ID;
+    public List<Utilisateur> getRES_Favoris() {
+        return RES_Favoris;
     }
 
-    public void setUTI_ID(Utilisateur UTI_ID) {
-        this.UTI_ID = UTI_ID;
+    public void setRES_Favoris(List<Utilisateur> RES_Favoris) {
+        this.RES_Favoris = RES_Favoris;
     }
 }

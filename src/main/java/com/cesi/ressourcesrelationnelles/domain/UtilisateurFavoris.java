@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur {
+public class UtilisateurFavoris {
 
     @Id
     @Column(name = "uti_id")
@@ -40,11 +40,17 @@ public class Utilisateur {
     @ManyToOne
     @JoinColumn(name = "routi_id")
     private RoleUtilisateur ROUTI_ID;
-    public Utilisateur(){
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "mettre_en_favoris",
+            joinColumns = { @JoinColumn(name = "uti_id") },
+            inverseJoinColumns = { @JoinColumn(name = "res_id") })
+    private List<Ressource> uti_favoris;
+
+    public UtilisateurFavoris(){
 
     }
 
-    public Utilisateur(String nom, String prenom){
+    public UtilisateurFavoris(String nom, String prenom){
         this.UTI_Nom = nom;
         this.UTI_Prenom = prenom;
     }
@@ -155,5 +161,13 @@ public class Utilisateur {
 
     public void setROUTI_ID(RoleUtilisateur ROUTI_ID) {
         this.ROUTI_ID = ROUTI_ID;
+    }
+
+    public List<Ressource> getUTI_Favoris() {
+        return uti_favoris;
+    }
+
+    public void setUTI_Favoris(List<Ressource> UTI_Favoris) {
+        this.uti_favoris = UTI_Favoris;
     }
 }
