@@ -7,6 +7,7 @@ import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,5 +61,19 @@ public class UtilisateurService {
 
     public Utilisateur findById(long id) throws NotFoundException {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+    }
+
+    public Utilisateur findByEmail(String email) {
+        List<Utilisateur> utilisateurs = new ArrayList<>();
+        Iterable<Utilisateur> iterable = userRepository.findAll();
+        for (Utilisateur item : iterable) {
+            if(item.getUTI_Mail().equals(email)){
+                return item;
+            }
+        }
+        return null;
+
+
+        //return userRepository.findAll().orElseThrow(() -> new NotFoundException("user not found"));
     }
 }
