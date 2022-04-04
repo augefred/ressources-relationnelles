@@ -1,8 +1,7 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.Resource;
-import com.cesi.ressourcesrelationnelles.domain.User;
-import com.cesi.ressourcesrelationnelles.repository.ResourceRepository;
+import com.cesi.ressourcesrelationnelles.domain.Ressource;
+import com.cesi.ressourcesrelationnelles.repository.RessourceRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,7 +13,6 @@ import org.springframework.test.context.event.annotation.BeforeTestClass;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,10 +23,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ResourceServiceMockedTest {
 
     @InjectMocks
-    public ResourceService resourceService;
+    public RessourceService resourceService;
 
     @Mock
-    public ResourceRepository resourceRepository;
+    public RessourceRepository resourceRepository;
 
     @BeforeTestClass
     public void initMock() {
@@ -39,18 +37,18 @@ class ResourceServiceMockedTest {
     void findResoucesByDateTest() throws ParseException {
         // Given
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        List<Resource> mockResources = new ArrayList<>();
-        mockResources.add(new Resource("titre", formatter.parse("2022-01-14 18:54:21"), "C:/"));
-        mockResources.add(new Resource("titre2", formatter.parse("2022-01-13 08:15:40"), "D:/"));
+        List<Ressource> mockResources = new ArrayList<>();
+        mockResources.add(new Ressource("titre", formatter.parse("2022-01-14 18:54:21"), "C:/"));
+        mockResources.add(new Ressource("titre2", formatter.parse("2022-01-13 08:15:40"), "D:/"));
         Mockito.when(resourceRepository.findAll()).thenReturn(mockResources);
 
         // when
         String dateInString = "2022-01-13 08:15:40";
         Date date = formatter.parse(dateInString);
-        List<Resource> resources = resourceService.list(date);
+        List<Ressource> resources = resourceService.list(date);
         assertNotNull(resources);
         //Then
         assertEquals(1, resources.size());
-        assertEquals(date, resources.get(0).getDatePublication());
+        assertEquals(date, resources.get(0).getRES_DatePublication());
     }
 }

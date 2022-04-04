@@ -11,27 +11,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ResourceTest {
     @Test
     public void createResource(){
-        Resource resource = new Resource();
+        Ressource resource = new Ressource();
         assertNotNull(resource);
-        resource.setId(1);
-        assertEquals(1, resource.getId());
+        resource.setRES_ID(1);
+        assertEquals(1, resource.getRES_ID());
     }
 
     @Test
     public void getUrl(){
-        Resource resource = new Resource();
+        Ressource resource = new Ressource();
         assertNotNull(resource);
-        resource.setId(1);
-        resource.setUrl("C:/Users/image.png");
-        assertEquals("C:/Users/image.png", resource.getUrl());
+        resource.setRES_ID(1);
+        resource.setRES_URL("C:/Users/image.png");
+        assertEquals("C:/Users/image.png", resource.getRES_URL());
     }
 
     @Test
     public void getDatePublication(){
-        Resource resource = new Resource();
-        resource.setId(1);
-        resource.setUrl("C:/Users/image.png");
-        resource.setDatePublication(new Date(2022, Calendar.JANUARY, 10, 23, 58, 12));
-        assertEquals(new Date(2022, Calendar.JANUARY, 10, 23, 58,12), resource.getDatePublication());
+        Ressource resource = new Ressource();
+        resource.setRES_ID(1);
+        resource.setRES_URL("C:/Users/image.png");
+        resource.setRES_DatePublication(new Date(2022, Calendar.JANUARY, 10, 23, 58, 12));
+        assertEquals(new Date(2022, Calendar.JANUARY, 10, 23, 58,12), resource.getRES_DatePublication());
     }
 }

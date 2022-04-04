@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -9,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class UserTest {
     @Test
     void createUser() {
-        User user = new User();
-        user.setFirstName("fred");
+        Utilisateur user = new Utilisateur();
+        user.setUTI_Prenom("fred");
         assertNotNull(user);
-        assertEquals("fred", user.getFirstName());
+        assertEquals("fred", user.getUTI_Prenom());
     }
 
     @Test
     void getFullUser() {
-        User user = new User();
-        user.setFirstName("fred");
-        user.setLastName("foo");
+        Utilisateur user = new Utilisateur();
+        user.setUTI_Prenom("fred");
+        user.setUTI_Prenom("foo");
 
         assertNotNull(user);
 

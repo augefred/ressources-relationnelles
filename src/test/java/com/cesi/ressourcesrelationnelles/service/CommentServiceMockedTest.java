@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
-import com.cesi.ressourcesrelationnelles.domain.Comment;
-import com.cesi.ressourcesrelationnelles.repository.CommentRepository;
+import com.cesi.ressourcesrelationnelles.domain.Commentaire;
+import com.cesi.ressourcesrelationnelles.repository.CommentaireRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommentServiceMockedTest {
 
     @InjectMocks
-    public CommentService commentService;
+    public CommentaireService commentService;
 
     @Mock
-    public CommentRepository commentRepository;
+    public CommentaireRepository commentRepository;
 
     @BeforeTestClass
     public void initMock() {
@@ -31,14 +31,14 @@ class CommentServiceMockedTest {
 
     @Test
     void findCommentByIdMockTest(){
-        List<Comment> mockComment = new ArrayList<>();
-        mockComment.add(new Comment(1L,"pol", "bar","bar"));
-        mockComment.add(new Comment(1L,"pol", "foo","foo"));
+        List<Commentaire> mockComment = new ArrayList<>();
+        mockComment.add(new Commentaire(1L,"pol", "bar"));
+        mockComment.add(new Commentaire(1L,"pol","foo"));
 
         Mockito.when(commentRepository.findAll()).thenReturn(mockComment);
 
         // when
-        List<Comment> comments = commentService.list("bar");
+        List<Commentaire> comments = commentService.list("bar");
         assertNotNull(comments);
         //Then
         assertEquals(1, comments.size());
@@ -46,14 +46,14 @@ class CommentServiceMockedTest {
 
     @Test
     void findCommentByIdMockNoResultTest(){
-        List<Comment> mockComment = new ArrayList<>();
-        mockComment.add(new Comment(1L,"pol", "bar","bar"));
-        mockComment.add(new Comment(1L,"pol", "foo","foo"));
+        List<Commentaire> mockComment = new ArrayList<>();
+        mockComment.add(new Commentaire(1L,"pol","bar"));
+        mockComment.add(new Commentaire(1L,"pol","foo"));
 
         Mockito.when(commentRepository.findAll()).thenReturn(mockComment);
 
         // when
-        List<Comment> comments = commentService.list("var");
+        List<Commentaire> comments = commentService.list("var");
         assertNotNull(comments);
         //Then
         assertEquals(0, comments.size());

@@ -1,7 +1,7 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.User;
-import com.cesi.ressourcesrelationnelles.repository.UserRepository;
+import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
+import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class UserServiceMockedTest {
 
     @InjectMocks
-    public UserService userService;
+    public UtilisateurService userService;
 
     @Mock
-    public UserRepository userRepository;
+    public UtilisateurRepository userRepository;
 
     @BeforeTestClass
     public void initMock() {
@@ -33,31 +33,31 @@ class UserServiceMockedTest {
     @Test
     void findUsersByNameTest() {
         // Given
-        List<User> mockUsers = new ArrayList<>();
-        mockUsers.add(new User("fred", "auge"));
-        mockUsers.add(new User("fred", "foo"));
+        List<Utilisateur> mockUsers = new ArrayList<>();
+        mockUsers.add(new Utilisateur("fred", "auge"));
+        mockUsers.add(new Utilisateur("fred", "foo"));
 
         Mockito.when(userRepository.findAll()).thenReturn(mockUsers);
 
         // when
-        List<User> users = userService.list("foo", null);
+        List<Utilisateur> users = userService.list("foo", null);
         assertNotNull(users);
         //Then
         assertEquals(1, users.size());
-        assertEquals("foo", users.get(0).getLastName());
+        assertEquals("foo", users.get(0).getUTI_Nom());
     }
 
     @Test
     void findUsersByNameNoResultTest() {
         // Given
-        List<User> mockUsers = new ArrayList<>();
-        mockUsers.add(new User("fred", "auge"));
-        mockUsers.add(new User("fred", "foo"));
+        List<Utilisateur> mockUsers = new ArrayList<>();
+        mockUsers.add(new Utilisateur("fred", "auge"));
+        mockUsers.add(new Utilisateur("fred", "foo"));
 
         Mockito.when(userRepository.findAll()).thenReturn(mockUsers);
 
         // when
-        List<User> users = userService.list("bar", "");
+        List<Utilisateur> users = userService.list("bar", "");
         assertNotNull(users);
         //Then
         assertEquals(0, users.size());
@@ -67,19 +67,19 @@ class UserServiceMockedTest {
     void findUsersByLastNameAndFirstNameTest() {
         // Given
 
-        List<User> mockUsers = new ArrayList<>();
-        mockUsers.add(new User("fred", "auge"));
-        mockUsers.add(new User("fred", "foo"));
+        List<Utilisateur> mockUsers = new ArrayList<>();
+        mockUsers.add(new Utilisateur("fred", "auge"));
+        mockUsers.add(new Utilisateur("fred", "foo"));
 
         Mockito.when(userRepository.findAll()).thenReturn(mockUsers);
 
         // when
-        List<User> users = userService.list("foo", "fred");
+        List<Utilisateur> users = userService.list("foo", "fred");
         assertNotNull(users);
         //Then
         Mockito.verify(userRepository, Mockito.times(1)).findAll();
         assertEquals(1, users.size());
-        assertEquals("foo", users.get(0).getLastName());
-        assertEquals("fred", users.get(0).getFirstName());
+        assertEquals("foo", users.get(0).getUTI_Nom());
+        assertEquals("fred", users.get(0).getUTI_Prenom());
     }
 }
