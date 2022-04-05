@@ -83,9 +83,9 @@ public class AuthController {
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
-        Set<String> strRoles = signUpRequest.getRole();
+        //Set<String> strRoles = signUpRequest.getRole();
 
-        if (strRoles == null) {
+        /*if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
@@ -112,8 +112,8 @@ public class AuthController {
             });
         }
 
-        user.setRoles(roles);
-        userRepository.save(user);
+        //user.setRoles(roles);
+        utilisateurService.create(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }*/

@@ -2,6 +2,7 @@ package com.cesi.ressourcesrelationnelles.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,6 +36,10 @@ public class Utilisateur {
     private String UTI_Civilite;
     @Column(name = "uti_codepostal")
     private int UTI_CodePostal;
+    @Column(name = "uti_adresse")
+    private String UTI_Adresse;
+    @Column(name = "uti_ville")
+    private String UTI_Ville;
     @Column(name = "uti_activation")
     private boolean UTI_Activation;
     @Column(name = "routi_id")
@@ -46,6 +51,10 @@ public class Utilisateur {
     public Utilisateur(String nom, String prenom){
         this.UTI_Nom = nom;
         this.UTI_Prenom = prenom;
+    }
+
+    public Utilisateur(String nom, String prenom, Date dateNaissance, String motDePasse, String email, String numTel, String civilite, int codePostal, String adresse, String ville){
+
     }
 
     /*public Utilisateur(String nom, String prenom, Date datenaissance, String mail, String tel, String avatar, String civilite, int codePostal, boolean active){
