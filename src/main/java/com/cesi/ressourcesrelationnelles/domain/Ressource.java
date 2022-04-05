@@ -27,15 +27,10 @@ public class Ressource {
     private int RES_NbVues;
     @Column(name = "res_archive")
     private boolean RES_Archive;
-    @ManyToOne
-    @JoinColumn(name = "tr_id")
-    private TypeRessources TR_ID;
-    @ManyToOne
-    @JoinColumn(name = "categ_id")
-    private Categories CATEG_ID;
-    /*@ManyToOne
-    @JoinColumn(name="uti_id")
-    private Utilisateur UTI_ID;*/
+    @Column(name = "tr_id")
+    private Long TR_ID;
+    @Column(name = "categ_id")
+    private Long CATEG_ID;
     @Column(name = "uti_id")
     private Long UTI_ID;
 
@@ -120,19 +115,19 @@ public class Ressource {
         this.RES_Archive = RES_Archive;
     }
 
-    public TypeRessources getTR_ID() {
+    public Long getTR_ID() {
         return TR_ID;
     }
 
-    public void setTR_ID(TypeRessources TR_ID) {
+    public void setTR_ID(Long TR_ID) {
         this.TR_ID = TR_ID;
     }
 
-    public Categories getCATEG_ID() {
+    public Long getCATEG_ID() {
         return CATEG_ID;
     }
 
-    public void setCATEG_ID(Categories CATEG_ID) {
+    public void setCATEG_ID(Long CATEG_ID) {
         this.CATEG_ID = CATEG_ID;
     }
 

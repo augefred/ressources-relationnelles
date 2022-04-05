@@ -16,15 +16,12 @@ public class Commentaire {
     private String COM_DatePublication;
     @Column(name = "com_contenu")
     private String COM_Contenu;
-    @ManyToOne
-    @JoinColumn(name = "com_id_1")
-    private Commentaire COM_ID_Parent;
-    @ManyToOne
-    @JoinColumn(name = "res_id")
-    private Ressource RES_ID;
-    @ManyToOne
-    @JoinColumn(name = "uti_id")
-    private Utilisateur UTI_ID;
+    @Column(name = "com_id_1")
+    private Long COM_ID_Parent;
+    @Column(name = "res_id")
+    private Long RES_ID;
+    @Column(name = "uti_id")
+    private Long UTI_ID;
 
     public Commentaire(Long id, String nameUser, String commentMessage) {
         this.COM_ID = id;
@@ -59,27 +56,27 @@ public class Commentaire {
         this.COM_Contenu = COM_Contenu;
     }
 
-    public Commentaire getCOM_ID_Parent() {
+    public Long getCOM_ID_Parent() {
         return COM_ID_Parent;
     }
 
-    public void setCOM_ID_Parent(Commentaire COM_ID_Parent) {
+    public void setCOM_ID_Parent(Long COM_ID_Parent) {
         this.COM_ID_Parent = COM_ID_Parent;
     }
 
-    public Ressource getRES_ID() {
+    public Long getRES_ID() {
         return RES_ID;
     }
 
-    public void setRES_ID(Ressource RES_ID) {
+    public void setRES_ID(Long RES_ID) {
         this.RES_ID = RES_ID;
     }
 
-    public Utilisateur getUTI_ID() {
+    public Long getUTI_ID() {
         return UTI_ID;
     }
 
-    public void setUTI_ID(Utilisateur UTI_ID) {
+    public void setUTI_ID(Long UTI_ID) {
         this.UTI_ID = UTI_ID;
     }
 }

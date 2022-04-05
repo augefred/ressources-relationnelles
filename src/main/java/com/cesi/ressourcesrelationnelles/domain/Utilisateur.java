@@ -37,9 +37,8 @@ public class Utilisateur {
     private int UTI_CodePostal;
     @Column(name = "uti_activation")
     private boolean UTI_Activation;
-    @ManyToOne
-    @JoinColumn(name = "routi_id")
-    private RoleUtilisateur ROUTI_ID;
+    @Column(name = "routi_id")
+    private Long ROUTI_ID;
     public Utilisateur(){
 
     }
@@ -149,11 +148,11 @@ public class Utilisateur {
         this.UTI_Activation = UTI_Activation;
     }
 
-    public RoleUtilisateur getROUTI_ID() {
+    public Long getROUTI_ID() {
         return ROUTI_ID;
     }
 
-    public void setROUTI_ID(RoleUtilisateur ROUTI_ID) {
+    public void setROUTI_ID(Long ROUTI_ID) {
         this.ROUTI_ID = ROUTI_ID;
     }
 
