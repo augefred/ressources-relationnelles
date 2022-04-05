@@ -156,4 +156,12 @@ public class Utilisateur {
     public void setROUTI_ID(RoleUtilisateur ROUTI_ID) {
         this.ROUTI_ID = ROUTI_ID;
     }
+
+    public String getUTI_MotDePasse() {
+        return UTI_MotDePasse;
+    }
+
+    public void setUTI_MotDePasse(String UTI_MotDePasse) {
+        this.UTI_MotDePasse = UTI_MotDePasse;
+    }
 }

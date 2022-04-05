@@ -33,9 +33,11 @@ public class Ressource {
     @ManyToOne
     @JoinColumn(name = "categ_id")
     private Categories CATEG_ID;
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="uti_id")
-    private Utilisateur UTI_ID;
+    private Utilisateur UTI_ID;*/
+    @Column(name = "uti_id")
+    private Long UTI_ID;
 
     public Ressource(){
     }
@@ -134,11 +136,19 @@ public class Ressource {
         this.CATEG_ID = CATEG_ID;
     }
 
-    public Utilisateur getUTI_ID() {
+    public Long getUTI_ID() {
+        return UTI_ID;
+    }
+
+    public void setUTI_ID(Long UTI_ID) {
+        this.UTI_ID = UTI_ID;
+    }
+
+    /*public Utilisateur getUTI_ID() {
         return UTI_ID;
     }
 
     public void setUTI_ID(Utilisateur UTI_ID) {
         this.UTI_ID = UTI_ID;
-    }
+    }*/
 }
