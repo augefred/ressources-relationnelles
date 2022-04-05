@@ -1,5 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
 
+import com.cesi.ressourcesrelationnelles.domain.Resource;
 import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.RessourceRepository;
@@ -22,40 +23,40 @@ public class RessourceService {
         this.resourceRepository = resourceRepository;
     }
 
-    public List<Ressource> list(){
-        List<Ressource> resources = new ArrayList<>();
-        Iterable<Ressource> iterable = resourceRepository.findAll();
-        for (Ressource item : iterable) {
+    public List<Resource> list(){
+        List<Resource> resources = new ArrayList<>();
+        Iterable<Resource> iterable = resourceRepository.findAll();
+        for (Resource item : iterable) {
             resources.add(item);
         }
         //List<Ressource> resources = resourceRepository.findAll();
         return resources;
     }
 
-    public List<Ressource> list(Date date){
-        List<Ressource> resources = new ArrayList<>();
-        Iterable<Ressource> iterable = resourceRepository.findAll();
-        for (Ressource item : iterable) {
+    public List<Resource> list(Date date){
+        List<Resource> resources = new ArrayList<>();
+        Iterable<Resource> iterable = resourceRepository.findAll();
+        for (Resource item : iterable) {
             resources.add(item);
         }
-        resources = resources.stream().filter(resource -> resource.getRES_DatePublication().compareTo(date) == (0)).collect(Collectors.toList());
+        resources = resources.stream().filter(resource -> resource.getPublishDate().compareTo(date) == (0)).collect(Collectors.toList());
         return resources;
     }
 
-    public Ressource getById(long id) throws ResourceNotFoundException {
-        Optional<Ressource> res = resourceRepository.findById(id);
+    public Resource getById(long id) throws ResourceNotFoundException {
+        Optional<Resource> res = resourceRepository.findById(id);
         if(res.isPresent()){
             return res.get();
         }
         throw new ResourceNotFoundException();
     }
 
-    public Ressource createResource(Ressource resource){
+    public Resource createResource(Resource resource){
         return resourceRepository.save(resource);
     }
 
-    public Ressource updateResource(Ressource resource) throws ResourceNotFoundException {
-        if(resourceRepository.findById(resource.getRES_ID()).isPresent()){
+    public Resource updateResource(Resource resource) throws ResourceNotFoundException {
+        if(resourceRepository.findById(resource.getId()).isPresent()){
             return resourceRepository.save(resource);
         }
         throw new ResourceNotFoundException();
