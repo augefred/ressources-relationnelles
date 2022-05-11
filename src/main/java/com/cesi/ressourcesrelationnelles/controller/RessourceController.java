@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
-import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.service.RessourceService;
 import org.springframework.http.HttpStatus;

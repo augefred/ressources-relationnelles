@@ -1,18 +1,9 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
-import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.payload.request.LoginRequest;
-import com.cesi.ressourcesrelationnelles.payload.request.SignupRequest;
 import com.cesi.ressourcesrelationnelles.payload.response.JwtResponse;
-import com.cesi.ressourcesrelationnelles.payload.response.MessageResponse;
-import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import com.cesi.ressourcesrelationnelles.security.jwt.JwtUtils;
 import com.cesi.ressourcesrelationnelles.security.services.UserDetailsImpl;
 import com.cesi.ressourcesrelationnelles.service.UtilisateurService;

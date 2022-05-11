@@ -8,7 +8,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 public class CommentsControllerIT {
 
 
-    @Autowired
-    private TestRestTemplate template;
+    /*@Autowired
+    private TestRestTemplate template;*/
 
 }

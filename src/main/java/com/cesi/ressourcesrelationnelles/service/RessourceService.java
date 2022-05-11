@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
 
 import com.cesi.ressourcesrelationnelles.domain.Resource;
-import com.cesi.ressourcesrelationnelles.domain.Ressource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.RessourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,8 @@ public class RessourceService {
         Iterable<Resource> iterable = resourceRepository.findAll();
         for (Resource item : iterable) {
             resources.add(item);
+            System.out.println("id= " + item.getId());
+            System.out.println("date= " + item.getPublishDate());
         }
         resources = resources.stream().filter(resource -> resource.getPublishDate().compareTo(date) == (0)).collect(Collectors.toList());
         return resources;

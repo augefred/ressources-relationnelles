@@ -45,6 +45,11 @@ public class User {
 
     @ManyToOne
     private Role role;
+
+    public User(String firstName, String lastName) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
     //private Long ROUTI_ID;
 
 

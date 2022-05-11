@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import com.cesi.ressourcesrelationnelles.domain.Commentaire;
+import com.cesi.ressourcesrelationnelles.domain.Comment;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.service.CommentaireService;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class CommentaireController {
 
 
     @GetMapping("/commentaire/{id}")
-    public Commentaire getCommentaireById(@PathVariable("id")Long id) {
+    public Comment getCommentaireById(@PathVariable("id")Long id) {
         try{
              return commentaireService.findById(id);
         }
@@ -37,8 +37,8 @@ public class CommentaireController {
 
     @PutMapping("/commentaire/{id}")
     @ResponseBody
-    public Commentaire updateCommentaire(@PathVariable long id, @RequestBody Commentaire comment) {
-        comment.setCOM_ID(id);
+    public Comment updateCommentaire(@PathVariable long id, @RequestBody Comment comment) {
+        comment.setId(id);
         return commentaireService.updateComment(comment);
     }
 
@@ -49,7 +49,7 @@ public class CommentaireController {
     }
 
     @GetMapping("/commentaire")
-    public List<Commentaire> getAllCommentaire(@RequestParam(required = false) String nameUserParentComment) {
+    public List<Comment> getAllCommentaire(@RequestParam(required = false) String nameUserParentComment) {
         if (nameUserParentComment != null) {
             return commentaireService.list(nameUserParentComment);
         }
@@ -58,7 +58,7 @@ public class CommentaireController {
 
 
     @PostMapping("/commentaire")
-    public Commentaire createCommentaire(@RequestBody Commentaire commentaire) {
+    public Comment createCommentaire(@RequestBody Comment commentaire) {
         return commentaireService.createComment(commentaire);
     }
 

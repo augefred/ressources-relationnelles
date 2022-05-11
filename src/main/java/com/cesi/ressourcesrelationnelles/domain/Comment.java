@@ -27,4 +27,9 @@ public class Comment {
 
     @ManyToOne
     private Comment parent;
+
+    public Comment(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
 }

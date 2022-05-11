@@ -2,13 +2,10 @@ package com.cesi.ressourcesrelationnelles.security.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
-import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
+import com.cesi.ressourcesrelationnelles.domain.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,15 +31,15 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = new ArrayList<>();
     }
 
-    public static UserDetailsImpl build(Utilisateur user) {
+    public static UserDetailsImpl build(User user) {
         /*List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());*/
 
         return new UserDetailsImpl(
-                user.getUTI_ID(),
-                user.getUTI_Mail(),
-                user.getUTI_MotDePasse());
+                user.getId(),
+                user.getEmail(),
+                user.getPassword());
     }
 
     @Override
