@@ -8,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class UserTest {
     @Test
     void createUser() {
-        Utilisateur user = new Utilisateur();
-        user.setUTI_Prenom("fred");
+        User user = new User();
+        user.setFirstName("fred");
         assertNotNull(user);
-        assertEquals("fred", user.getUTI_Prenom());
+        assertEquals("fred", user.getFirstName());
     }
 
     @Test
     void getFullUser() {
-        Utilisateur user = new Utilisateur();
-        user.setUTI_Prenom("fred");
-        user.setUTI_Prenom("foo");
+        User user = new User();
+        user.setFirstName("fred");
+        user.setFirstName("foo");
 
         assertNotNull(user);
 

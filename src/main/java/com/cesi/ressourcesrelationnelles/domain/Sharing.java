@@ -7,21 +7,23 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+/*@Entity
 @Data
 @Table
 @AllArgsConstructor
-@NoArgsConstructor
-public class Groupe {
+@NoArgsConstructor*/
+public class Sharing {
 
-    @Id
+    /*@Id
     private Long id;
 
-    private String name;
-
     @ManyToOne
-    private User manager;
+    private Resource resource;
 
-    @ManyToMany
-    private List<User> members;
+    private Long sharerId;
+
+    private boolean isUser;
+
+    @OneToMany
+    private User receiver;*/
 }

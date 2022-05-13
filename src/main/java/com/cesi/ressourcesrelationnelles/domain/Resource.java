@@ -1,6 +1,5 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,21 +15,32 @@ import java.util.Date;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {
-
+public class Resource {
     @Id
     private Long id;
 
+    private String title;
+
     private Date publishDate;
 
-    private String content;
+    private Date modificationDate;
+
+    private boolean visibility;
+
+    private String urlContent;
+
+    private boolean validated;
+
+    private Long viewNumber;
+
+    private boolean archived;
 
     @ManyToOne
-    private User sender;
+    private User author;
 
     @ManyToOne
-    private User receiver;
+    private Type type;
 
     @ManyToOne
-    private Message parent;
+    private Category category;
 }

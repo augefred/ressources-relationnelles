@@ -10,10 +10,10 @@ public class CommentTest {
 
     @Test
     public void createComment() {
-        Commentaire comment = new Commentaire();
-        comment.setCOM_Contenu("Un message généreux");
+        Comment comment = new Comment();
+        comment.setContent("Un message généreux");
         Assert.notNull(comment);
-        assertEquals("Un message généreux", comment.getCOM_Contenu());
+        assertEquals("Un message généreux", comment.getContent());
     }
 
 

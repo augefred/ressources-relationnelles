@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import com.cesi.ressourcesrelationnelles.domain.Ressource;
+import com.cesi.ressourcesrelationnelles.domain.Resource;
 import com.cesi.ressourcesrelationnelles.exception.ResourceNotFoundException;
 import com.cesi.ressourcesrelationnelles.service.RessourceService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class RessourceController {
     }
 
     @GetMapping("/ressource")
-    public List<Ressource> getResourcesbyDate(@RequestParam(required = false) Date date) {
+    public List<Resource> getResourcesbyDate(@RequestParam(required = false) Date date) {
         if(date == null) {
             return ressourceService.list();
         }
@@ -27,7 +27,7 @@ public class RessourceController {
     }
 
     @GetMapping("/ressource/{id}")
-    public Ressource getResourceById(@PathVariable("id")Long id) {
+    public Resource getResourceById(@PathVariable("id")Long id) {
         try{
             return ressourceService.getById(id);
         }
@@ -38,15 +38,16 @@ public class RessourceController {
 
     @PostMapping("/ressource")
     @ResponseBody
-    public Ressource addRessource(@RequestBody Ressource ressource) {
-        return ressourceService.createResource(ressource);
+    public Resource addRessource(@RequestBody com.cesi.ressourcesrelationnelles.dto.Resource ressource) {
+
+        return ressourceService.createResource(ressource.getModel());
     }
 
-    @PutMapping("/ressource")
+    @PutMapping("/ressource/{id}")
     @ResponseBody
-    public Ressource updateResource(@PathVariable("id") Long id, @RequestBody Ressource ressource) throws ResourceNotFoundException {
-        ressource.setRES_ID(id);
-        return ressourceService.updateResource(ressource);
+    public Resource updateResource(@PathVariable("id") Long id, @RequestBody com.cesi.ressourcesrelationnelles.dto.Resource ressource) throws ResourceNotFoundException {
+        ressource.setId(id);
+        return ressourceService.updateResource(ressource.getModel());
     }
 
     @DeleteMapping("/ressource/{id}")

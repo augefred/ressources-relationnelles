@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.security.services;
 
-import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
-import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
+import com.cesi.ressourcesrelationnelles.domain.User;
 import com.cesi.ressourcesrelationnelles.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Utilisateur user = userRepository.findByEmail(username);
+    User user = userRepository.findByEmail(username);
     return UserDetailsImpl.build(user);
   }
 

@@ -16,7 +16,7 @@ import java.util.Date;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {
+public class Comment {
 
     @Id
     private Long id;
@@ -26,11 +26,10 @@ public class Message {
     private String content;
 
     @ManyToOne
-    private User sender;
+    private Comment parent;
 
-    @ManyToOne
-    private User receiver;
-
-    @ManyToOne
-    private Message parent;
+    public Comment(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
 }

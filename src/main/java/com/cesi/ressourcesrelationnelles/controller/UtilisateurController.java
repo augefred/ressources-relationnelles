@@ -1,6 +1,6 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
+import com.cesi.ressourcesrelationnelles.domain.User;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.service.UtilisateurService;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class UtilisateurController {
     }
 
     @GetMapping("/utilisateur")
-    public List<Utilisateur> getAllUtilisateurs(@RequestParam(required = false) String nom, @RequestParam(required = false) String prenom) {
+    public List<User> getAllUtilisateurs(@RequestParam(required = false) String nom, @RequestParam(required = false) String prenom) {
         if (nom != null || prenom != null) {
             return utilisateurService.list(nom, prenom);
         }
@@ -29,7 +29,7 @@ public class UtilisateurController {
     }
 
     @GetMapping("/utilisateur/{id}")
-    public Utilisateur getUserById(@PathVariable long id) {
+    public User getUserById(@PathVariable long id) {
         try {
             return utilisateurService.findById(id);
         } catch (NotFoundException e) {

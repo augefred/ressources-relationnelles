@@ -1,7 +1,6 @@
 package com.cesi.ressourcesrelationnelles.service;
 
-import com.cesi.ressourcesrelationnelles.domain.Commentaire;
-import com.cesi.ressourcesrelationnelles.domain.Ressource;
+import com.cesi.ressourcesrelationnelles.domain.Comment;
 import com.cesi.ressourcesrelationnelles.exception.NotFoundException;
 import com.cesi.ressourcesrelationnelles.repository.CommentaireRepository;
 import org.springframework.stereotype.Service;
@@ -21,20 +20,20 @@ public class CommentaireService {
         this.commentRepository = commentRepository;
     }
 
-    public List<Commentaire> list() {
-        List<Commentaire> commentaires = new ArrayList<>();
-        Iterable<Commentaire> iterable = commentRepository.findAll();
-        for (Commentaire item : iterable) {
+    public List<Comment> list() {
+        List<Comment> commentaires = new ArrayList<>();
+        Iterable<Comment> iterable = commentRepository.findAll();
+        for (Comment item : iterable) {
             commentaires.add(item);
         }
         return commentaires;
     }
 
-    public Commentaire createComment(Commentaire comment){
+    public Comment createComment(Comment comment){
         return  commentRepository.save(comment);
     }
 
-    public Commentaire updateComment(Commentaire comment){
+    public Comment updateComment(Comment comment){
         return commentRepository.save(comment);
     }
 
@@ -42,8 +41,8 @@ public class CommentaireService {
         commentRepository.deleteById(id);
     }
 
-    public Commentaire findById(long id) throws NotFoundException {
-        Optional<Commentaire> optionalComment = commentRepository.findById(id);
+    public Comment findById(long id) throws NotFoundException {
+        Optional<Comment> optionalComment = commentRepository.findById(id);
         if (optionalComment.isPresent()) {
             return optionalComment.get();
 
@@ -53,15 +52,15 @@ public class CommentaireService {
         }
     }
 
-    public List<Commentaire> list(String nameUserParentComment){
-        List<Commentaire> commentaires = new ArrayList<>();
-        Iterable<Commentaire> iterable = commentRepository.findAll();
-        for (Commentaire item : iterable) {
+    public List<Comment> list(String nameUserParentComment){
+        List<Comment> commentaires = new ArrayList<>();
+        Iterable<Comment> iterable = commentRepository.findAll();
+        for (Comment item : iterable) {
             commentaires.add(item);
         }
         if (nameUserParentComment != null){
             commentaires = commentaires.stream().filter(comment ->
-                comment.getCOM_Contenu().equals(nameUserParentComment)).collect(Collectors.toList());
+                comment.getContent().equals(nameUserParentComment)).collect(Collectors.toList());
         }
         return commentaires;
     }

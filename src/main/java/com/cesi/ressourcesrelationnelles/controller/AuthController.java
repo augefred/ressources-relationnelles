@@ -1,18 +1,9 @@
 package com.cesi.ressourcesrelationnelles.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
-import com.cesi.ressourcesrelationnelles.domain.Utilisateur;
 import com.cesi.ressourcesrelationnelles.payload.request.LoginRequest;
-import com.cesi.ressourcesrelationnelles.payload.request.SignupRequest;
 import com.cesi.ressourcesrelationnelles.payload.response.JwtResponse;
-import com.cesi.ressourcesrelationnelles.payload.response.MessageResponse;
-import com.cesi.ressourcesrelationnelles.repository.UtilisateurRepository;
 import com.cesi.ressourcesrelationnelles.security.jwt.JwtUtils;
 import com.cesi.ressourcesrelationnelles.security.services.UserDetailsImpl;
 import com.cesi.ressourcesrelationnelles.service.UtilisateurService;
@@ -83,9 +74,9 @@ public class AuthController {
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
-        Set<String> strRoles = signUpRequest.getRole();
+        //Set<String> strRoles = signUpRequest.getRole();
 
-        if (strRoles == null) {
+        /*if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
@@ -112,8 +103,8 @@ public class AuthController {
             });
         }
 
-        user.setRoles(roles);
-        userRepository.save(user);
+        //user.setRoles(roles);
+        utilisateurService.create(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }*/
