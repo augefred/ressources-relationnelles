@@ -19,7 +19,7 @@ public class RessourceController {
     }
 
     @GetMapping("/ressource")
-    public List<Resource> getResourcesbyDate(@RequestParam(required = false) Date date) {
+    public List<Resource> getResourcesbyDate(@RequestParam(required = false) Date date) throws ResourceNotFoundException {
         if(date == null) {
             return ressourceService.list();
         }

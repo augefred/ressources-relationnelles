@@ -6,10 +6,7 @@ import com.cesi.ressourcesrelationnelles.repository.RessourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +29,7 @@ public class RessourceService {
         return resources;
     }
 
-    public List<Resource> list(Date date){
+    public List<Resource> list(Date date) throws ResourceNotFoundException {
         List<Resource> resources = new ArrayList<>();
         Iterable<Resource> iterable = resourceRepository.findAll();
         for (Resource item : iterable) {
@@ -41,6 +38,9 @@ public class RessourceService {
             System.out.println("date= " + item.getPublishDate());
         }
         resources = resources.stream().filter(resource -> resource.getPublishDate().compareTo(date) == (0)).collect(Collectors.toList());
+        if(resources.size() == 0){
+            throw new ResourceNotFoundException();
+        }
         return resources;
     }
 
@@ -65,5 +65,20 @@ public class RessourceService {
 
     public void deleteResource(long id){
         resourceRepository.deleteById(id);
+    }
+
+    public List<Resource> listOrderByDateDesc() {
+        List<Resource> res = this.list();
+        res.sort(Comparator.comparing(Resource::getPublishDate));
+        return res;
+    }
+
+    public List<Resource> search(String reseachText) throws ResourceNotFoundException {
+        List<Resource> res = this.list();
+        res = res.stream().filter(resource -> resource.getTitle().contains(reseachText)).collect(Collectors.toList());
+        if(res.size() == 0){
+            throw new ResourceNotFoundException();
+        }
+        return res;
     }
 }
