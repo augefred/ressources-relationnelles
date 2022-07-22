@@ -1,6 +1,8 @@
 package com.cesi.ressourcesrelationnelles.domain;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +10,9 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+@SpringBootTest
+@AutoConfigureMockMvc(addFilters = false)
 public class ResourceTest {
     @Test
     public void createResource(){
