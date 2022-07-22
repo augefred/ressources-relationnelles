@@ -47,23 +47,4 @@ class ResourcesControllerTest {
         assertNotNull(res);
         assertEquals(4, res.size());
     }
-
-   /* @Test
-    void postRessources() throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String dateInString = "2018-01-12 12:55:10";
-        Date date = formatter.parse(dateInString);
-        User user = new User();
-        user.setId(1L);
-        Category category = new Category();
-        category.setId(1L);
-        com.cesi.ressourcesrelationnelles.domain.Type type = new Type();
-        type.setId(1L);
-        Resource res = new Resource(9L, "createJunit", date, date, true, "c:", true, 300L, false, user, type, category);
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post("/resource/").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(res))).andReturn();
-        System.out.println("mvcResult : " + mvcResult.getResponse().getStatus());
-        int status = mvcResult.getResponse().getStatus();
-        System.out.println("status = " + status);
-
-    }*/
 }
